@@ -15,7 +15,8 @@ This toolkit is part of the Buildings and Habitats object Model. Find out more o
 ## Quick Start 🚀 
 
 Grab the [latest installer](https://bhom.xyz/) and a selection of [sample scripts](https://github.com/BHoM/samples).
-As this toolkit is not part of the installer will need to compile it separately.
+
+As this toolkit is not part of the installer, you will need to compile it separately.
 
 
 ## Getting Started for Developers 🤖 
