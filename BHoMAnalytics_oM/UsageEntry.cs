@@ -44,8 +44,6 @@ namespace BH.oM.BHoMAnalytics
 
         public virtual object SelectedItem { get; set; } = null;
 
-        public virtual string User { get; set; } = "";
-
         public virtual string Computer { get; set; } = "";
 
         public virtual string BHoMVersion { get; set; } = "";
