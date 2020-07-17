@@ -39,7 +39,6 @@ namespace BH.Engine.BHoMAnalytics
 
         public static List<UsageEntry> SummariseUsageData(this List<UsageLogEntry> logEntries)
         {
-            string user = Environment.UserName;
             string computer = Environment.MachineName;
 
             List<UsageEntry> dbEntries = new List<UsageEntry>();
@@ -56,7 +55,6 @@ namespace BH.Engine.BHoMAnalytics
                         EndTime = itemGroup.Max(x => x.Time),
                         UI = ui,
                         SelectedItem = itemGroup.Key,
-                        User = user,
                         Computer = computer,
                         BHoMVersion = itemGroup.First().BHoMVersion,
                         NbCallingComponents = itemGroup.Select(x => x.ComponentId).Distinct().Count(),
