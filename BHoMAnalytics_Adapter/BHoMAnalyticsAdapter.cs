@@ -53,7 +53,8 @@ namespace BH.Adapter.BHoMAnalytics
                 return false;
 
             List<UsageEntry> usageData = Engine.BHoMAnalytics.Compute.CollectUsageData(true);
-            mongo.Push(usageData);
+            string tag = System.DateTime.UtcNow.Ticks.ToString();
+            mongo.Push(usageData, tag);
 
             return true;
         }
