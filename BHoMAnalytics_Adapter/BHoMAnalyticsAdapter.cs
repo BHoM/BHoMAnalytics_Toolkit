@@ -43,17 +43,19 @@ namespace BH.Adapter.BHoMAnalytics
 
 
         /***************************************************/
-        /**** Static Methods                            ****/
+        /**** Public Methods                            ****/
         /***************************************************/
 
-        static BHoMAnalyticsAdapter()
+        public static bool SendUsageData()
         {
             MongoAdapter mongo = GetTargetDatabase();
             if (mongo == null)
-                return;
+                return false;
 
             List<UsageEntry> usageData = Engine.BHoMAnalytics.Compute.CollectUsageData(false);
             mongo.Push(usageData);
+
+            return true;
         }
 
 
