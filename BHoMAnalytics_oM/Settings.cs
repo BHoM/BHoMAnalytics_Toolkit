@@ -22,15 +22,17 @@
 
 using BH.oM.Base;
 using BH.oM.Reflection.Debugging;
+using BH.oM.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BH.oM.BHoMAnalytics
 {
-    public class Settings : BHoMObject
+    public class Settings : BHoMObject, ISettings, IInitialisationSettings
     {
         /***************************************************/
         /**** Properties                                ****/
@@ -42,6 +44,19 @@ namespace BH.oM.BHoMAnalytics
 
         public virtual string CollectionName { get; set; } = "";
 
+        public virtual string InitialisationMethod { get; } = "BH.Adapter.BHoMAnalytics.BHoMAnalyticsAdapter.SendUsageData";
+
+
+        /***************************************************/
+        /**** Constructors                              ****/
+        /***************************************************/
+
+        public Settings(string serverAddress, string databaseName, string collectionName)
+        {
+            ServerAddress = serverAddress;
+            DatabaseName = databaseName;
+            CollectionName = collectionName;
+        }
 
         /***************************************************/
     }
