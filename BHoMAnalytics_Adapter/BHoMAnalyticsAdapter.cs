@@ -27,6 +27,7 @@ using System.IO;
 using BH.Adapter.Mongo;
 using BH.oM.BHoMAnalytics;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BH.Adapter.BHoMAnalytics
 {
@@ -48,13 +49,16 @@ namespace BH.Adapter.BHoMAnalytics
 
         public static bool SendUsageData()
         {
-            MongoAdapter mongo = GetTargetDatabase();
-            if (mongo == null)
-                return false;
-
-            List<UsageEntry> usageData = Engine.BHoMAnalytics.Compute.CollectUsageData(true);
-            string tag = System.DateTime.UtcNow.Ticks.ToString();
-            mongo.Push(usageData, tag);
+            Task.Run(() =>
+            {
+                MongoAdapter mongo = GetTargetDatabase();
+                if (mongo != null)
+                {
+                    List<UsageEntry> usageData = Engine.BHoMAnalytics.Compute.CollectUsageData(true);
+                    string tag = System.DateTime.UtcNow.Ticks.ToString();
+                    mongo.Push(usageData, tag);
+                }
+            });
 
             return true;
         }
@@ -66,33 +70,24 @@ namespace BH.Adapter.BHoMAnalytics
 
         private static MongoAdapter GetTargetDatabase()
         {
-            if (m_MongoAdapter == null)
+            string settingsFile = @"C:\ProgramData\BHoM\Settings\BHoMAnalytics.cfg";
+            if (!File.Exists(settingsFile))
+                return null;
+
+            try
             {
-                string settingsFile = @"C:\ProgramData\BHoM\Settings\BHoMAnalytics.cfg";
-                if (!File.Exists(settingsFile))
+                string json = File.ReadAllText(settingsFile);
+                ToolkitSettings settings = Engine.Serialiser.Convert.FromJson(json) as ToolkitSettings;
+                if (settings == null)
                     return null;
 
-                try
-                {
-                    string json = File.ReadAllText(settingsFile);
-                    ToolkitSettings settings = Engine.Serialiser.Convert.FromJson(json) as ToolkitSettings;
-                    if (settings == null)
-                        return null;
-
-                    m_MongoAdapter = new MongoAdapter(settings.ServerAddress, settings.DatabaseName, settings.CollectionName);
-                }
-                catch { }
-            } 
-
-            return m_MongoAdapter;
+                return new MongoAdapter(settings.ServerAddress, settings.DatabaseName, settings.CollectionName);
+            }
+            catch
+            {
+                return null;
+            }
         }
-
-
-        /***************************************************/
-        /**** Private Fields                            ****/
-        /***************************************************/
-
-        private static MongoAdapter m_MongoAdapter = null;
 
         /***************************************************/
     }
