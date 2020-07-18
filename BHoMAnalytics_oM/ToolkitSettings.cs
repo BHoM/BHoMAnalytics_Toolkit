@@ -25,6 +25,7 @@ using BH.oM.Reflection.Debugging;
 using BH.oM.UI;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -32,18 +33,23 @@ using System.Threading.Tasks;
 
 namespace BH.oM.BHoMAnalytics
 {
-    public class Settings : BHoMObject, ISettings, IInitialisationSettings
+    [Description("Settings for the BHoMAnalytics toolkit. This contains the reference to the database where to save the analytics data as well as the method in charge to do so.")]
+    public class ToolkitSettings : BHoMObject, ISettings, IInitialisationSettings
     {
         /***************************************************/
         /**** Properties                                ****/
         /***************************************************/
 
+        [Description("Connection string of the Mongo server in charge of storing teh analytics data. Be aware that this generally includes the port number.")]
         public virtual string ServerAddress { get; set; } = "";
 
+        [Description("Name of the database on the Mongo server that will contain the analytics data.")]
         public virtual string DatabaseName { get; set; } = "";
 
+        [Description("Name of the collection inside that database that will contain the analytics data.")]
         public virtual string CollectionName { get; set; } = "";
 
+        [Description("Method ran when the UI is loaded. This is in charge of sending teh analytics files generated so far to the database.")]
         public virtual string InitialisationMethod { get; } = "BH.Adapter.BHoMAnalytics.BHoMAnalyticsAdapter.SendUsageData";
 
 
@@ -51,7 +57,7 @@ namespace BH.oM.BHoMAnalytics
         /**** Constructors                              ****/
         /***************************************************/
 
-        public Settings(string serverAddress, string databaseName, string collectionName)
+        public ToolkitSettings(string serverAddress, string databaseName, string collectionName)
         {
             ServerAddress = serverAddress;
             DatabaseName = databaseName;
