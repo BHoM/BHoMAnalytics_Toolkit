@@ -52,7 +52,7 @@ namespace BH.Adapter.BHoMAnalytics
             if (mongo == null)
                 return false;
 
-            List<UsageEntry> usageData = Engine.BHoMAnalytics.Compute.CollectUsageData(false);
+            List<UsageEntry> usageData = Engine.BHoMAnalytics.Compute.CollectUsageData(true);
             mongo.Push(usageData);
 
             return true;
