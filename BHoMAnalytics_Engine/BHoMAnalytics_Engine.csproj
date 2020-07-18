@@ -59,11 +59,11 @@
   <ItemGroup>
     <Compile Include="Compute\SummariseUsageData.cs" />
     <Compile Include="Compute\CollectUsageData.cs" />
+    <Compile Include="Create\ToolkitSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Convert\" />
-    <Folder Include="Create\" />
     <Folder Include="Modify\" />
     <Folder Include="Query\" />
   </ItemGroup>

@@ -74,7 +74,7 @@ namespace BH.Adapter.BHoMAnalytics
                 try
                 {
                     string json = File.ReadAllText(settingsFile);
-                    Settings settings = Engine.Serialiser.Convert.FromJson(json) as Settings;
+                    ToolkitSettings settings = Engine.Serialiser.Convert.FromJson(json) as ToolkitSettings;
                     if (settings == null)
                         return null;
 
