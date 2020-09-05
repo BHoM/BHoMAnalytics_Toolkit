@@ -52,7 +52,7 @@ namespace BH.Adapter.BHoMAnalytics
             Task.Run(() =>
             {
                 MongoAdapter mongo = GetTargetDatabase();
-                if (mongo != null)
+                if (mongo != null && mongo.IsConnected())
                 {
                     List<UsageEntry> usageData = Engine.BHoMAnalytics.Compute.CollectUsageData(true);
                     string tag = System.DateTime.UtcNow.Ticks.ToString();
