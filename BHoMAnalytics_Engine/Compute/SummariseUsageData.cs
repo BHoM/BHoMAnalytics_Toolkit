@@ -47,16 +47,20 @@ namespace BH.Engine.BHoMAnalytics
             {
                 string ui = uiGroup.Key;
 
-                foreach (var itemGroup in uiGroup.GroupBy(x => x.SelectedItem))
+                foreach (var itemGroup in uiGroup.GroupBy(x => x.CallerName + x.SelectedItem))
                 {
+                    UsageLogEntry firstEntry = itemGroup.First();
+
                     dbEntries.Add(new UsageEntry
                     {
                         StartTime = itemGroup.Min(x => x.Time),
                         EndTime = itemGroup.Max(x => x.Time),
                         UI = ui,
-                        SelectedItem = itemGroup.Key,
+                        UiVersion = firstEntry.UiVersion,
+                        CallerName = firstEntry.CallerName,
+                        SelectedItem = firstEntry.SelectedItem,
                         Computer = computer,
-                        BHoMVersion = itemGroup.First().BHoMVersion,
+                        BHoMVersion = firstEntry.BHoMVersion,
                         NbCallingComponents = itemGroup.Select(x => x.ComponentId).Distinct().Count(),
                         TotalNbCalls = itemGroup.Count(),
                         Errors = itemGroup.SelectMany(x => x.Errors).GroupBy(x => x.Message).Select(g => g.First()).ToList()
