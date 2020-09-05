@@ -42,6 +42,10 @@ namespace BH.oM.BHoMAnalytics
 
         public virtual string UI { get; set; } = "";
 
+        public virtual string UiVersion { get; set; } = "";
+
+        public virtual string CallerName { get; set; } = "";
+
         public virtual object SelectedItem { get; set; } = null;
 
         public virtual string Computer { get; set; } = "";
