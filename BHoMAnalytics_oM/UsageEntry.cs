@@ -52,6 +52,12 @@ namespace BH.oM.BHoMAnalytics
 
         public virtual string BHoMVersion { get; set; } = "";
 
+        public virtual string FileId { get; set; } = "";
+
+        public virtual string FileName { get; set; } = "";
+
+        public virtual string ProjectCode { get; set; } = "";
+
         public virtual int NbCallingComponents { get; set; } = 0;
 
         public virtual int TotalNbCalls { get; set; } = 0;

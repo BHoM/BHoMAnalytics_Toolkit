@@ -43,11 +43,13 @@ namespace BH.Engine.BHoMAnalytics
 
             List<UsageEntry> dbEntries = new List<UsageEntry>();
 
-            foreach (var uiGroup in logEntries.GroupBy(x => x.UI))
+            foreach (var fileGroup in logEntries.GroupBy(x => x.FileId))
             {
-                string ui = uiGroup.Key;
+                string fileId = fileGroup.Key;
+                string fileName = fileGroup.Select(x => x.FileName).Where(x => !string.IsNullOrEmpty(x)).FirstOrDefault();
+                string projectCode = fileGroup.Select(x => x.ProjectCode).Where(x => !string.IsNullOrEmpty(x)).FirstOrDefault();
 
-                foreach (var itemGroup in uiGroup.GroupBy(x => x.CallerName + x.SelectedItem))
+                foreach (var itemGroup in fileGroup.GroupBy(x => x.CallerName + x.SelectedItem))
                 {
                     UsageLogEntry firstEntry = itemGroup.First();
 
@@ -55,12 +57,15 @@ namespace BH.Engine.BHoMAnalytics
                     {
                         StartTime = itemGroup.Min(x => x.Time),
                         EndTime = itemGroup.Max(x => x.Time),
-                        UI = ui,
+                        UI = firstEntry.UI,
                         UiVersion = firstEntry.UiVersion,
                         CallerName = firstEntry.CallerName,
                         SelectedItem = firstEntry.SelectedItem,
                         Computer = computer,
                         BHoMVersion = firstEntry.BHoMVersion,
+                        FileId = fileId,
+                        FileName = fileName,
+                        ProjectCode = projectCode,
                         NbCallingComponents = itemGroup.Select(x => x.ComponentId).Distinct().Count(),
                         TotalNbCalls = itemGroup.Count(),
                         Errors = itemGroup.SelectMany(x => x.Errors).GroupBy(x => x.Message).Select(g => g.First()).ToList()
