@@ -56,7 +56,7 @@ namespace BH.oM.BHoMAnalytics
 
         public virtual string FileName { get; set; } = "";
 
-        public virtual string ProjectCode { get; set; } = "";
+        public virtual string ProjectID { get; set; } = "";
 
         public virtual int NbCallingComponents { get; set; } = 0;
 

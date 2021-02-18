@@ -47,7 +47,7 @@ namespace BH.Engine.BHoMAnalytics
             {
                 string fileId = fileGroup.Key;
                 string fileName = fileGroup.Select(x => x.FileName).Where(x => !string.IsNullOrEmpty(x)).FirstOrDefault();
-                string projectCode = fileGroup.Select(x => x.ProjectCode).Where(x => !string.IsNullOrEmpty(x)).FirstOrDefault();
+                string projectID = fileGroup.Select(x => x.ProjectID).Where(x => !string.IsNullOrEmpty(x)).FirstOrDefault();
 
                 foreach (var itemGroup in fileGroup.GroupBy(x => x.CallerName + x.SelectedItem))
                 {
@@ -65,7 +65,7 @@ namespace BH.Engine.BHoMAnalytics
                         BHoMVersion = firstEntry.BHoMVersion,
                         FileId = fileId,
                         FileName = fileName,
-                        ProjectCode = projectCode,
+                        ProjectID = projectID,
                         NbCallingComponents = itemGroup.Select(x => x.ComponentId).Distinct().Count(),
                         TotalNbCalls = itemGroup.Count(),
                         Errors = itemGroup.SelectMany(x => x.Errors).GroupBy(x => x.Message).Select(g => g.First()).ToList()
