@@ -45,10 +45,14 @@ namespace BH.Engine.BHoMAnalytics
                 Engine.Reflection.Compute.RecordWarning("The folder C:\\ProgramData\\BHoM\\Logs doesn't exist so nothing was collected");
                 return new List<UsageEntry>();
             }
-                
-            List<UsageEntry> usageEntries = new List<UsageEntry>();
-
+            
             string[] usageFiles = Directory.GetFiles(logFolder, "Usage_*.log");
+
+            //TODO: this is a crowbar solution to disable pushing Revit logs to the database when not in Revit thread to avoid serialisation issues - to be improved
+            if (AppDomain.CurrentDomain.GetAssemblies().All(x => x.GetName().Name != "RevitAPI"))
+                usageFiles = usageFiles.Where(x => !x.Contains("Revit")).ToArray();
+
+            List<UsageEntry> usageEntries = new List<UsageEntry>();
             foreach (string file in usageFiles)
             {
                 // Get the file content
