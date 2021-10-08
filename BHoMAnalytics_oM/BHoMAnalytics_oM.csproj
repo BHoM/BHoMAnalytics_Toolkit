@@ -51,7 +51,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\ItemType.cs" />
     <Compile Include="ToolkitSettings.cs" />
+    <Compile Include="WebUsageEntry.cs" />
     <Compile Include="UsageEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
