@@ -42,7 +42,7 @@ namespace BH.Engine.BHoMAnalytics
             string logFolder = @"C:\ProgramData\BHoM\Logs";
             if (!Directory.Exists(logFolder))
             {
-                Engine.Reflection.Compute.RecordWarning("The folder C:\\ProgramData\\BHoM\\Logs doesn't exist so nothing was collected");
+                Engine.Base.Compute.RecordWarning("The folder C:\\ProgramData\\BHoM\\Logs doesn't exist so nothing was collected");
                 return new List<UsageEntry>();
             }
             
@@ -76,7 +76,7 @@ namespace BH.Engine.BHoMAnalytics
                 }
                 catch (Exception e)
                 {
-                    Engine.Reflection.Compute.RecordError("Failed to process usage log file " + file + ". Error: \n" + e.Message);
+                    Engine.Base.Compute.RecordError("Failed to process usage log file " + file + ". Error: \n" + e.Message);
                 }
 
                 // Delete the file if requested
@@ -88,7 +88,7 @@ namespace BH.Engine.BHoMAnalytics
                     }
                     catch
                     {
-                        Engine.Reflection.Compute.RecordError("Failed to delete usage log file " + file + ".");
+                        Engine.Base.Compute.RecordError("Failed to delete usage log file " + file + ".");
                     }
                 } 
             }
