@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("BHoMAnalytics_oM")]
-[assembly: AssemblyDescription("BHoM Analytics Object Model")]
+[assembly: AssemblyDescription("https://github.com/BHoM/BHoMAnalytics_Toolkit")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("BHoMAnalytics_oM")]
