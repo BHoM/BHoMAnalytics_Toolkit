@@ -66,6 +66,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -75,6 +77,10 @@
     <Reference Include="UI_Engine, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\ProgramData\BHoM\Assemblies\UI_Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="UI_oM, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\ProgramData\BHoM\Assemblies\UI_oM.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -90,7 +96,12 @@
       <Project>{6787686e-fcb0-45e1-bb7d-d2a37ddc4f79}</Project>
       <Name>BHoMAnalytics_oM</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BHoMAnalytics_UI\BHoMAnalytics_UI.csproj">
+      <Project>{a87855bd-8c08-4c0f-953e-8a795cc9eabb}</Project>
+      <Name>BHoMAnalytics_UI</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetDir)$(TargetFileName)"  "C:\ProgramData\BHoM\Assemblies" /Y</PostBuildEvent>
