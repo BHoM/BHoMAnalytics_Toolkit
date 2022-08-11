@@ -50,7 +50,7 @@ namespace BH.oM.BHoMAnalytics
         public virtual string CollectionName { get; set; } = "";
 
         [Description("Method ran when the UI is loaded. This is in charge of sending teh analytics files generated so far to the database.")]
-        public virtual string InitialisationMethod { get; } = "BH.Adapter.BHoMAnalytics.BHoMAnalyticsAdapter.SendUsageData";
+        public virtual string InitialisationMethod { get; } = "BH.Adapter.BHoMAnalytics.BHoMAnalyticsAdapter.InitialiseAnalytics";
 
 
         /***************************************************/
