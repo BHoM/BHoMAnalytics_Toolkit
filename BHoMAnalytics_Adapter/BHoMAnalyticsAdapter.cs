@@ -20,6 +20,7 @@
  * along with this code. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.      
  */
 
+using System;
 using BH.oM.Base.Attributes;
 using System.ComponentModel;
 using System.Threading;
@@ -47,6 +48,22 @@ namespace BH.Adapter.BHoMAnalytics
         /**** Public Methods                            ****/
         /***************************************************/
 
+        public static bool InitialiseAnalytics()
+        {
+            try
+            {
+                BH.Engine.UI.Compute.m_UsageLogTriggered += UsageLogTriggered;
+            }
+            catch (Exception e)
+            {
+                BH.Engine.Base.Compute.RecordError($"Error occurred when initialising analytics trigger. Exception was: {e.ToString()}");
+            }
+
+            return SendUsageData();
+        }
+
+        /***************************************************/
+
         public static bool SendUsageData()
         {
             Task.Run(() =>
@@ -63,6 +80,7 @@ namespace BH.Adapter.BHoMAnalytics
             return true;
         }
 
+        /***************************************************/
 
         /***************************************************/
         /**** Helper Methods                            ****/
@@ -87,6 +105,13 @@ namespace BH.Adapter.BHoMAnalytics
             {
                 return null;
             }
+        }
+
+        /***************************************************/
+
+        private static void UsageLogTriggered(object sender, EventArgs e)
+        {
+            BH.Engine.Base.Compute.RecordNote("TRIGGERED USAGE LOG");
         }
 
         /***************************************************/
