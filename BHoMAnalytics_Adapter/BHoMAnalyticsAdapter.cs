@@ -21,6 +21,7 @@
  */
 
 using System;
+using System.Linq;
 using BH.oM.Base.Attributes;
 using System.ComponentModel;
 using System.Threading;
@@ -29,6 +30,7 @@ using BH.Adapter.Mongo;
 using BH.oM.BHoMAnalytics;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using BH.oM.UI;
 
 namespace BH.Adapter.BHoMAnalytics
 {
@@ -111,10 +113,17 @@ namespace BH.Adapter.BHoMAnalytics
 
         private static void UsageLogTriggered(object sender, EventArgs e)
         {
-            BH.Engine.Base.Compute.RecordNote("TRIGGERED USAGE LOG");
+            var projectIDEvent = BH.Engine.Base.Query.AllEvents().OfType<ProjectIDEvent>().FirstOrDefault();
+            if (projectIDEvent == null && !m_ProjectWindowDIsplayed)
+            {
+                BH.UI.Analytics.CaptureProjectData window = new UI.Analytics.CaptureProjectData();
+                m_ProjectWindowDIsplayed = true;
+            }
         }
 
         /***************************************************/
+
+        private static bool m_ProjectWindowDIsplayed = false;
     }
 }
 
