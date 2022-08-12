@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -48,6 +48,8 @@
     </Reference>
     <Reference Include="BHoM_Engine">
       <HintPath>C:\ProgramData\BHoM\Assemblies\BHoM_Engine.dll</HintPath>
+      <Private>False</Private>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="Mongo_Adapter">
       <HintPath>C:\ProgramData\BHoM\Assemblies\Mongo_Adapter.dll</HintPath>
@@ -76,10 +78,12 @@
     <Reference Include="System.Xml" />
     <Reference Include="UI_Engine">
       <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
       <HintPath>C:\ProgramData\BHoM\Assemblies\UI_Engine.dll</HintPath>
     </Reference>
     <Reference Include="UI_oM">
       <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
       <HintPath>C:\ProgramData\BHoM\Assemblies\UI_oM.dll</HintPath>
     </Reference>
   </ItemGroup>
