@@ -113,6 +113,19 @@ namespace BH.Adapter.BHoMAnalytics
 
         private static void UsageLogTriggered(object sender, EventArgs e)
         {
+            var args = e as TriggerLogUsageArgs;
+            if (args == null)
+                return;
+
+            List<string> ignoredSelectedItems = new List<string>()
+            {
+                "BH.oM.Base.Output`10[System.String,System.String,System.String,System.Collections.Generic.List`1[System.String],System.Collections.Generic.List`1[System.Type],System.Collections.Generic.List`1[System.Reflection.MethodInfo],System.Collections.Generic.List`1[System.Type],System.String,System.String,System.String] GetInfo()",
+                "Boolean SetProjectID(System.String)",
+            };
+
+            if (ignoredSelectedItems.Contains(args.SelectedItem.ToString()))
+                return; //Don't handle any pop up when the SetProjectID component is the one being called - it means someone is setting the project ID already!
+
             var projectIDEvent = BH.Engine.Base.Query.AllEvents().OfType<ProjectIDEvent>().FirstOrDefault();
             if (projectIDEvent == null && !m_ProjectWindowDIsplayed)
             {
