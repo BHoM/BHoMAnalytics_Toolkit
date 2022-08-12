@@ -76,11 +76,11 @@
     <Reference Include="System.Xml" />
     <Reference Include="UI_Engine, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\ProgramData\BHoM\Assemblies\UI_Engine.dll</HintPath>
+      <HintPath>C:\ProgramData\BHoM\Assemblies\UI_Engine.dll</HintPath>
     </Reference>
-    <Reference Include="UI_oM, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="UI_oM">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\ProgramData\BHoM\Assemblies\UI_oM.dll</HintPath>
+      <HintPath>C:\ProgramData\BHoM\Assemblies\UI_oM.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
