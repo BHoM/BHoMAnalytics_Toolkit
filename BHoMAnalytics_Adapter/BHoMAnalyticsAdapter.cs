@@ -123,7 +123,7 @@ namespace BH.Adapter.BHoMAnalytics
                 "Boolean SetProjectID(System.String)",
             };
 
-            if (ignoredSelectedItems.Contains(args.SelectedItem.ToString()))
+            if (args.SelectedItem == null || ignoredSelectedItems.Contains(args.SelectedItem.ToString()))
                 return; //Don't handle any pop up when the SetProjectID component is the one being called - it means someone is setting the project ID already!
 
             var projectIDEvent = BH.Engine.Base.Query.AllEvents().OfType<ProjectIDEvent>().FirstOrDefault();

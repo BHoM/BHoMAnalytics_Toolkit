@@ -9,7 +9,9 @@
         ShowInTaskbar="False"
         WindowStyle="None"
         ResizeMode="NoResize"
-        WindowStartupLocation="CenterOwner">
+        WindowStartupLocation="CenterOwner"
+        Topmost="True"
+        Deactivated="Deactivate_Window">
     <Grid>
         <StackPanel>
             <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="Is this being used for Project or Non-Project use?" VerticalAlignment="Top" FontWeight="Bold"/>

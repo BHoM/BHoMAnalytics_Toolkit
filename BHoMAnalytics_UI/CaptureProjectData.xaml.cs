@@ -84,5 +84,10 @@ namespace BH.UI.Analytics
 
             this.Close();
         }
+
+        private void Deactivate_Window(object sender, EventArgs e)
+        {
+            this.Topmost = true;
+        }
     }
 }
