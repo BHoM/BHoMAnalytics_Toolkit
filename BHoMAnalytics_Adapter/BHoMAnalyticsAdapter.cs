@@ -129,12 +129,20 @@ namespace BH.Adapter.BHoMAnalytics
             var projectIDEvent = BH.Engine.Base.Query.AllEvents().OfType<ProjectIDEvent>().FirstOrDefault();
             if (projectIDEvent == null && !m_ProjectWindowDIsplayed)
             {
-                BH.UI.Analytics.CaptureProjectData window = new UI.Analytics.CaptureProjectData();
+                Thread t = new Thread(ShowProjectCaptureWindow);
+                t.SetApartmentState(ApartmentState.STA);
+                t.Start();
+                
                 m_ProjectWindowDIsplayed = true;
             }
         }
 
         /***************************************************/
+
+        private static void ShowProjectCaptureWindow()
+        {
+            BH.UI.Analytics.CaptureProjectData window = new UI.Analytics.CaptureProjectData();
+        }
 
         private static bool m_ProjectWindowDIsplayed = false;
     }
