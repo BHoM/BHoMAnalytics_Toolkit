@@ -54,7 +54,7 @@ namespace BH.Adapter.BHoMAnalytics
         {
             try
             {
-                BH.Engine.UI.Compute.m_UsageLogTriggered += UsageLogTriggered;
+                //BH.Engine.UI.Compute.m_UsageLogTriggered += UsageLogTriggered;
             }
             catch (Exception e)
             {
