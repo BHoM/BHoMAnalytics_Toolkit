@@ -46,7 +46,7 @@ namespace BH.UI.Analytics
         public CaptureProjectData()
         {
             InitializeComponent();
-            this.Show();
+            this.ShowDialog();
             ProjectBtn.Focus();
         }
 
