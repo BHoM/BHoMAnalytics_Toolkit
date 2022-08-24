@@ -47,11 +47,14 @@ namespace BH.UI.Analytics
         {
             InitializeComponent();
             this.Show();
+            ProjectBtn.Focus();
         }
 
         private void Click_ProjectBtn(object sender, EventArgs e)
         {
             ProjectInputPanel.Visibility = Visibility.Visible;
+            this.Height = 250;
+            ProjectIDInput.Focus();
         }
 
         private void Click_NonProjectBtn(object sender, EventArgs e)
@@ -69,8 +72,24 @@ namespace BH.UI.Analytics
 
         private void Click_ConfirmProjectBtn(object sender, EventArgs e)
         {
+            ConfirmProject();
+        }
+
+        private void KeyDown_ProjectIDEntry(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter || e.Key == Key.Return)
+                ConfirmProject();
+        }
+
+        private void Deactivate_Window(object sender, EventArgs e)
+        {
+            this.Topmost = true;
+        }
+
+        private void ConfirmProject()
+        {
             var projectID = ProjectIDInput.Text;
-            if(string.IsNullOrEmpty(projectID))
+            if (string.IsNullOrEmpty(projectID))
             {
                 MessageBox.Show("Project ID cannot be empty", "Error", MessageBoxButton.OK);
                 return;
@@ -85,9 +104,9 @@ namespace BH.UI.Analytics
             this.Close();
         }
 
-        private void Deactivate_Window(object sender, EventArgs e)
+        private void ProjectBtn_MouseEnter(object sender, MouseEventArgs e)
         {
-            this.Topmost = true;
+            ((Button)sender).Background = new SolidColorBrush(Colors.Black);
         }
     }
 }

@@ -5,19 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BH.UI.Analytics"
         mc:Ignorable="d"
-        Title="Confirm Project Data" Height="300" Width="350"
+        Title="Confirm Project Data" Height="120" Width="350"
         ShowInTaskbar="False"
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
         Topmost="True"
-        Deactivated="Deactivate_Window">
+        Deactivated="Deactivate_Window"
+        BorderBrush="Black"
+        BorderThickness="1"
+        >
     <Grid>
         <StackPanel>
-            <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="Is this being used for Project or Non-Project use?" VerticalAlignment="Top" FontWeight="Bold"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="Please indicate the use of this script" VerticalAlignment="Top" FontWeight="Bold"/>
             <Grid Margin="0,10,0,0">
                 <Button Name="ProjectBtn" Content="Project" HorizontalAlignment="Left" Margin="15,0,0,0" VerticalAlignment="Top" Height="65" Width="150
-                        " Click="Click_ProjectBtn" />
+                        " Click="Click_ProjectBtn" IsDefault="True" />
 
                 <Button Name="NonProjectBtn" Content="Non-Project" HorizontalAlignment="Left" Margin="185,0,0,0" VerticalAlignment="Top" Height="65" Width="150
                         " Click="Click_NonProjectBtn" />
@@ -25,7 +28,7 @@
 
             <StackPanel Name="ProjectInputPanel" Visibility="Hidden">
                 <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="Please confirm the project number" VerticalAlignment="Top" FontWeight="Bold"/>
-                <TextBox Name="ProjectIDInput" HorizontalAlignment="Center" Width="200" Margin="0,10,0,0" />
+                <TextBox Name="ProjectIDInput" HorizontalAlignment="Center" Height="25" Width="200" Margin="0,10,0,0" KeyDown="KeyDown_ProjectIDEntry" />
                 <Button Name="ConfirmProjectBtn" Content="Confirm" HorizontalAlignment="Center" Margin="0,10,0,0" Height="65" Width="150" Click="Click_ConfirmProjectBtn" />
             </StackPanel>
         </StackPanel>
