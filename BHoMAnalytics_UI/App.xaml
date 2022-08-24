@@ -4,6 +4,19 @@
              xmlns:local="clr-namespace:BH.UI.Analytics"
              StartupUri="CaptureProjectData.xaml">
     <Application.Resources>
-         
+        <Style TargetType="{x:Type Control}">
+            <Setter Property="Background" Value="#ffffff" />
+            <Setter Property="Foreground" Value="#211218" />
+        </Style>
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#E8E8E8" />
+            <Setter Property="Foreground" Value="#211218" />
+        </Style>
+
+        <Style TargetType="{x:Type Border}">
+            <Setter Property="CornerRadius" Value="4"/>
+        </Style>
+
     </Application.Resources>
 </Application>
