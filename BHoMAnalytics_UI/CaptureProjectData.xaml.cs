@@ -46,28 +46,25 @@ namespace BH.UI.Analytics
         public CaptureProjectData()
         {
             InitializeComponent();
+            VersionTextBlock.Text = $"BHoM Version: {BH.Engine.Base.Query.BHoMVersion()}";
             this.ShowDialog();
             ProjectBtn.Focus();
         }
 
+        public string Version;
+
         private void Click_ProjectBtn(object sender, EventArgs e)
         {
             ProjectInputPanel.Visibility = Visibility.Visible;
-            this.Height = 250;
+            this.Height = 360;
             ProjectIDInput.Focus();
         }
 
         private void Click_NonProjectBtn(object sender, EventArgs e)
         {
-            string projectID = "Non-Project work";
-
-            BH.Engine.Base.Compute.RecordEvent(new ProjectIDEvent
-            {
-                Message = "The project ID for this file is now set to " + projectID,
-                ProjectID = projectID
-            });
-
-            this.Close();
+            NonProjectSelectionPanel.Visibility = Visibility.Visible;
+            this.Height = 360;
+            NonProjectListBox.Focus();
         }
 
         private void Click_ConfirmProjectBtn(object sender, EventArgs e)
@@ -88,7 +85,16 @@ namespace BH.UI.Analytics
 
         private void ConfirmProject()
         {
-            var projectID = ProjectIDInput.Text;
+            string projectID ="";
+            if (ProjectInputPanel.Visibility == Visibility.Visible)
+            {
+               projectID = ProjectIDInput.Text;
+            }
+            else if (NonProjectSelectionPanel.Visibility == Visibility.Visible)
+            {
+                projectID = NonProjectListBox.SelectedValue.ToString();
+            }
+
             if (string.IsNullOrEmpty(projectID))
             {
                 MessageBox.Show("Project ID cannot be empty", "Error", MessageBoxButton.OK);
@@ -107,6 +113,17 @@ namespace BH.UI.Analytics
         private void ProjectBtn_MouseEnter(object sender, MouseEventArgs e)
         {
             ((Button)sender).Background = new SolidColorBrush(Colors.Black);
+        }
+
+        private void Click_ConfirmNonProjectBtn(object sender, RoutedEventArgs e)
+        {
+            ConfirmProject();
+        }
+
+        private void KeyDown_NonProjectListBox(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter || e.Key == Key.Return)
+                ConfirmProject();
         }
     }
 }
