@@ -110,7 +110,12 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\BHoMAnalytics_oM\BHoMAnalytics_oM.csproj">
+      <Project>{6787686E-FCB0-45E1-BB7D-D2A37DDC4F79}</Project>
+      <Name>BHoMAnalytics_oM</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Files\Resources\Images\BHoM_Logo.png" />
   </ItemGroup>

@@ -22,17 +22,16 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="80"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Image Grid.Row="0" Grid.Column="0" Height="Auto" Width="Auto" Source="/Files/Resources/Images/BHoM_Logo.png"/>
         <StackPanel Grid.Row="0" Grid.Column="1" Height="Auto" Width="Auto" VerticalAlignment="Center">
-            <TextBlock FontSize="20" FontFamily="Arial Black" FontWeight="Bold" TextWrapping="Wrap">
+            <TextBlock Margin="0 10 0 10" FontSize="20" FontFamily="Arial Black" FontWeight="Bold" TextWrapping="Wrap">
                 The Buildings and
                 <LineBreak></LineBreak>
                 Habitats object Model
             </TextBlock>
-            <TextBlock></TextBlock>
             <TextBlock FontSize="14" FontFamily="Arial Black" TextWrapping="Wrap" VerticalAlignment="Bottom">
             SUSTAINABLE CODE AT SCALE
             </TextBlock>
@@ -57,12 +56,6 @@
         <StackPanel Name="NonProjectSelectionPanel" Visibility="Visible" Grid.Row="2" Grid.ColumnSpan="2">
             <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="Please confirm the non-project type" VerticalAlignment="Top" FontWeight="Bold"/>
             <ComboBox Name="NonProjectListBox" HorizontalAlignment="Center" Height="25" Width="200" Margin="0,10,0,0" KeyDown="KeyDown_NonProjectListBox">
-                <ComboBox.Items>
-                    <ComboBoxItem Content="Development" />
-                    <ComboBoxItem Content="Testing" />
-                    <ComboBoxItem Content="Light Treason" />
-                    <ComboBoxItem Content="Hackademy" />
-                </ComboBox.Items>
             </ComboBox>
             <Button Name="ConfirmNonProjectBtn" Content="Confirm" HorizontalAlignment="Center" Margin="0,10,0,0" Height="65" Width="150" Click="Click_ConfirmNonProjectBtn" />
         </StackPanel>
