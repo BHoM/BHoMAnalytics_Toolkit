@@ -33,7 +33,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using BH.oM.BHoMAnalytics;
 using BH.oM.UI;
 
 namespace BH.UI.Analytics
@@ -47,12 +47,13 @@ namespace BH.UI.Analytics
         {
             InitializeComponent();
             VersionTextBlock.Text = $"BHoM Version: {BH.Engine.Base.Query.BHoMVersion()}";
+            NonProjectListBox.ItemsSource = Enum.GetValues(typeof(NonProjectOption));
             this.ShowDialog();
             ProjectBtn.Focus();
         }
 
         public string Version;
-
+        
         private void Click_ProjectBtn(object sender, EventArgs e)
         {
             ProjectInputPanel.Visibility = Visibility.Visible;
