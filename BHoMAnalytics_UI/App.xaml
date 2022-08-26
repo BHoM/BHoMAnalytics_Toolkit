@@ -12,8 +12,10 @@
         <Style TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#E8E8E8" />
             <Setter Property="Foreground" Value="#211218" />
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Border.CornerRadius" Value="10" />
         </Style>
-
         <Style TargetType="{x:Type Border}">
             <Setter Property="CornerRadius" Value="4"/>
         </Style>

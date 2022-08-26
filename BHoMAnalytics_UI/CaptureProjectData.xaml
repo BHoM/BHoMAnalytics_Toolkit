@@ -14,6 +14,7 @@
         Deactivated="Deactivate_Window"
         BorderBrush="Black"
         BorderThickness="1"
+        
         >
     <Grid>
         <Grid.RowDefinitions>
@@ -29,13 +30,13 @@
         <StackPanel Grid.Row="0" Grid.Column="1" Height="Auto" Width="Auto" VerticalAlignment="Center">
             <TextBlock Margin="0 10 0 10" FontSize="20" FontFamily="Arial Black" FontWeight="Bold" TextWrapping="Wrap">
                 The Buildings and
-                <LineBreak></LineBreak>
+                <LineBreak/>
                 Habitats object Model
             </TextBlock>
-            <TextBlock FontSize="14" FontFamily="Arial Black" TextWrapping="Wrap" VerticalAlignment="Bottom">
+            <TextBlock FontSize="12" FontFamily="Arial Black" TextWrapping="Wrap" VerticalAlignment="Bottom">
             SUSTAINABLE CODE AT SCALE
             </TextBlock>
-            <TextBlock Name="VersionTextBlock" FontSize="14" FontFamily="Arial Black" TextWrapping="Wrap" VerticalAlignment="Bottom">
+            <TextBlock Name="VersionTextBlock" FontSize="10" Margin="0 10 0 0" FontFamily="Arial Black" TextWrapping="Wrap" VerticalAlignment="Bottom">
             </TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
