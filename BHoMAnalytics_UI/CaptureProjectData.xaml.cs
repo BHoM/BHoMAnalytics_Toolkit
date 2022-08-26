@@ -53,9 +53,19 @@ namespace BH.UI.Analytics
         }
 
         public string Version;
-        
+
+        private void ResetForms()
+        {
+            NonProjectSelectionPanel.Visibility = Visibility.Hidden;
+            NonProjectListBox.SelectedValue = null;
+            ProjectInputPanel.Visibility = Visibility.Hidden;
+            ProjectIDInput.Text = "";
+
+        }
+
         private void Click_ProjectBtn(object sender, EventArgs e)
         {
+            ResetForms();
             ProjectInputPanel.Visibility = Visibility.Visible;
             this.Height = 360;
             ProjectIDInput.Focus();
@@ -63,6 +73,8 @@ namespace BH.UI.Analytics
 
         private void Click_NonProjectBtn(object sender, EventArgs e)
         {
+            ResetForms();
+            ProjectInputPanel.Visibility = Visibility.Hidden;
             NonProjectSelectionPanel.Visibility = Visibility.Visible;
             this.Height = 360;
             NonProjectListBox.Focus();
@@ -86,10 +98,10 @@ namespace BH.UI.Analytics
 
         private void ConfirmProject()
         {
-            string projectID ="";
+            string projectID = "";
             if (ProjectInputPanel.Visibility == Visibility.Visible)
             {
-               projectID = ProjectIDInput.Text;
+                projectID = ProjectIDInput.Text;
             }
             else if (NonProjectSelectionPanel.Visibility == Visibility.Visible)
             {
