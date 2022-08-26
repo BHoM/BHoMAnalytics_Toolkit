@@ -74,8 +74,8 @@ namespace BH.UI.Analytics
         private void Click_NonProjectBtn(object sender, EventArgs e)
         {
             ResetForms();
-            ProjectInputPanel.Visibility = Visibility.Hidden;
             NonProjectSelectionPanel.Visibility = Visibility.Visible;
+            NonProjectListBox.SelectedIndex = 0;
             this.Height = 360;
             NonProjectListBox.Focus();
         }
