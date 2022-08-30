@@ -43,6 +43,7 @@ namespace BH.UI.Analytics
     /// </summary>
     public partial class CaptureProjectData : Window
     {
+        #region Constructor
         public CaptureProjectData()
         {
             InitializeComponent();
@@ -51,18 +52,16 @@ namespace BH.UI.Analytics
             this.ShowDialog();
             ProjectBtn.Focus();
         }
+        #endregion
 
+        #region Properties
         public string Version;
 
-        private void ResetForms()
-        {
-            NonProjectSelectionPanel.Visibility = Visibility.Hidden;
-            NonProjectListBox.SelectedValue = null;
-            ProjectInputPanel.Visibility = Visibility.Hidden;
-            ProjectIDInput.Text = "";
+        public int _initialHeight = 220;
+        #endregion
 
-        }
-
+        #region EventActions
+        //Project
         private void Click_ProjectBtn(object sender, EventArgs e)
         {
             ResetForms();
@@ -70,62 +69,23 @@ namespace BH.UI.Analytics
             this.Height = 360;
             ProjectIDInput.Focus();
         }
-
-        private void Click_NonProjectBtn(object sender, EventArgs e)
-        {
-            ResetForms();
-            NonProjectSelectionPanel.Visibility = Visibility.Visible;
-            NonProjectListBox.SelectedIndex = 0;
-            this.Height = 360;
-            NonProjectListBox.Focus();
-        }
-
         private void Click_ConfirmProjectBtn(object sender, EventArgs e)
         {
             ConfirmProject();
         }
-
         private void KeyDown_ProjectIDEntry(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter || e.Key == Key.Return)
                 ConfirmProject();
         }
 
-        private void Deactivate_Window(object sender, EventArgs e)
+        //Non Project
+        private void Click_NonProjectBtn(object sender, EventArgs e)
         {
-            this.Topmost = true;
-        }
-
-        private void ConfirmProject()
-        {
-            string projectID = "";
-            if (ProjectInputPanel.Visibility == Visibility.Visible)
-            {
-                projectID = ProjectIDInput.Text;
-            }
-            else if (NonProjectSelectionPanel.Visibility == Visibility.Visible)
-            {
-                projectID = NonProjectListBox.SelectedValue.ToString();
-            }
-
-            if (string.IsNullOrEmpty(projectID))
-            {
-                MessageBox.Show("Project ID cannot be empty", "Error", MessageBoxButton.OK);
-                return;
-            }
-
-            BH.Engine.Base.Compute.RecordEvent(new ProjectIDEvent
-            {
-                Message = "The project ID for this file is now set to " + projectID,
-                ProjectID = projectID
-            });
-
-            this.Close();
-        }
-
-        private void ProjectBtn_MouseEnter(object sender, MouseEventArgs e)
-        {
-            ((Button)sender).Background = new SolidColorBrush(Colors.Black);
+            ResetForms();
+            NonProjectSelectionPanel.Visibility = Visibility.Visible;
+            this.Height = 360;
+            NonProjectListBox.Focus();
         }
 
         private void Click_ConfirmNonProjectBtn(object sender, RoutedEventArgs e)
@@ -138,5 +98,85 @@ namespace BH.UI.Analytics
             if (e.Key == Key.Enter || e.Key == Key.Return)
                 ConfirmProject();
         }
+
+        private void NonProjectListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (NonProjectListBox.SelectedValue.Equals(NonProjectOption.Other))
+            {
+                this.Height = 425;
+                OtherSpecifyInput.Visibility = Visibility.Visible;
+                OtherSpecifyText.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                this.Height = 360;
+                OtherSpecifyInput.Visibility = Visibility.Collapsed;
+                OtherSpecifyText.Visibility = Visibility.Collapsed;
+            }
+        }
+        //Window
+        private void Deactivate_Window(object sender, EventArgs e)
+        {
+            this.Topmost = true;
+        }
+        #endregion
+
+        #region PrivateMethods
+        private void ConfirmProject()
+        {
+            string projectID = "";
+            if (ProjectInputPanel.Visibility == Visibility.Visible)
+            {
+                projectID = ProjectIDInput.Text;
+            }
+            else if (NonProjectSelectionPanel.Visibility == Visibility.Visible && OtherSpecifyInput.Visibility == Visibility.Visible)
+            {
+                projectID = $"Non-Project Work - {(int)NonProjectListBox.SelectedValue} - {OtherSpecifyInput.Text}";
+            }
+            else if (NonProjectSelectionPanel.Visibility == Visibility.Visible)
+            {
+                projectID = $"Non-Project Work - {(int)NonProjectListBox.SelectedValue}";
+            }
+
+
+            if (string.IsNullOrEmpty(projectID))
+            {
+                MessageBox.Show("Project ID cannot be empty", "Error", MessageBoxButton.OK);
+                return;
+            }
+            if ((NonProjectSelectionPanel.Visibility == Visibility.Visible && OtherSpecifyInput.Visibility == Visibility.Visible) && string.IsNullOrEmpty(OtherSpecifyInput.Text))
+            {
+                MessageBox.Show("Please specify a description for the non-project work", "Error", MessageBoxButton.OK);
+                return;
+            }
+
+            BH.Engine.Base.Compute.RecordEvent(new ProjectIDEvent
+            {
+                Message = "The project ID for this file is now set to " + projectID,
+                ProjectID = projectID
+            });
+
+            this.Close();
+        }
+
+        private void ResetForms()
+        {
+            //Non Project
+            NonProjectSelectionPanel.Visibility = Visibility.Hidden;
+            NonProjectListBox.SelectedValue = null;
+
+            //Other
+            OtherSpecifyInput.Text = "";
+            OtherSpecifyInput.Visibility = Visibility.Collapsed;
+            OtherSpecifyText.Visibility = Visibility.Collapsed;
+
+            //Project
+            ProjectInputPanel.Visibility = Visibility.Hidden;
+            ProjectIDInput.Text = "";
+
+            //Window
+            this.Height = _initialHeight;
+        }
+        #endregion
     }
 }
