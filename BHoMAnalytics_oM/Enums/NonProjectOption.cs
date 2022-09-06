@@ -35,7 +35,6 @@ namespace BH.oM.BHoMAnalytics
         Hackademy = 10,
         Testing = 15,
         Other = 20
-
     }
 }
 
