@@ -49,14 +49,15 @@ namespace BH.UI.Analytics
             InitializeComponent();
             VersionTextBlock.Text = $"BHoM Version: {BH.Engine.Base.Query.BHoMVersion()}";
             NonProjectListBox.ItemsSource = Enum.GetValues(typeof(NonProjectOption));
-            this.ShowDialog();
-            ProjectBtn.Focus();
             this._uiName = uiName;
 
             if (_uiName == "Grasshopper")
             {
-                GrassHopperUIText.Visibility = Visibility.Visible; 
+                GrassHopperUIText.Visibility = Visibility.Visible;
             }
+            
+            ProjectBtn.Focus();
+            this.ShowDialog();
         }
         #endregion
 
