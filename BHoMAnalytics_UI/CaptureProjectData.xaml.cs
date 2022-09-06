@@ -44,20 +44,27 @@ namespace BH.UI.Analytics
     public partial class CaptureProjectData : Window
     {
         #region Constructor
-        public CaptureProjectData()
+        public CaptureProjectData(string uiName)
         {
             InitializeComponent();
             VersionTextBlock.Text = $"BHoM Version: {BH.Engine.Base.Query.BHoMVersion()}";
             NonProjectListBox.ItemsSource = Enum.GetValues(typeof(NonProjectOption));
             this.ShowDialog();
             ProjectBtn.Focus();
+            this._uiName = uiName;
+
+            if (_uiName == "Grasshopper")
+            {
+                GrassHopperUIText.Visibility = Visibility.Visible; 
+            }
         }
         #endregion
 
         #region Properties
         public string Version;
+        public string _uiName;
 
-        public int _initialHeight = 220;
+        public int _initialHeight = 240;
         #endregion
 
         #region EventActions
@@ -66,7 +73,7 @@ namespace BH.UI.Analytics
         {
             ResetForms();
             ProjectInputPanel.Visibility = Visibility.Visible;
-            this.Height = 360;
+            this.Height = 380;
             ProjectIDInput.Focus();
         }
         private void Click_ConfirmProjectBtn(object sender, EventArgs e)
@@ -84,7 +91,8 @@ namespace BH.UI.Analytics
         {
             ResetForms();
             NonProjectSelectionPanel.Visibility = Visibility.Visible;
-            this.Height = 360;
+            this.Height = 380;
+            NonProjectListBox.SelectedIndex = 0;
             NonProjectListBox.Focus();
         }
 
@@ -103,13 +111,13 @@ namespace BH.UI.Analytics
         {
             if (NonProjectListBox.SelectedValue.Equals(NonProjectOption.Other))
             {
-                this.Height = 425;
+                this.Height = 445;
                 OtherSpecifyInput.Visibility = Visibility.Visible;
                 OtherSpecifyText.Visibility = Visibility.Visible;
             }
             else
             {
-                this.Height = 360;
+                this.Height = 380;
                 OtherSpecifyInput.Visibility = Visibility.Collapsed;
                 OtherSpecifyText.Visibility = Visibility.Collapsed;
             }
@@ -173,6 +181,9 @@ namespace BH.UI.Analytics
             //Project
             ProjectInputPanel.Visibility = Visibility.Hidden;
             ProjectIDInput.Text = "";
+
+            //Grasshopper specific
+            GrassHopperUIText.Visibility = Visibility.Hidden;
 
             //Window
             this.Height = _initialHeight;

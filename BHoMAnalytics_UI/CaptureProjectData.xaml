@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BH.UI.Analytics"
         mc:Ignorable="d"
-        Title="Confirm Project Data" Height="220" Width="350"
+        Title="Confirm Project Data" Height="240" Width="350"
         ShowInTaskbar="False"
         WindowStyle="None"
         ResizeMode="NoResize"
@@ -18,7 +18,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
-            <RowDefinition Height="110"/>
+            <RowDefinition Height="130"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -47,6 +47,7 @@
                 <Button Name="NonProjectBtn" Content="Non-Project" HorizontalAlignment="Left" Margin="185,0,0,0" VerticalAlignment="Top" Height="65" Width="150
                         " Click="Click_NonProjectBtn" />
             </Grid>
+            <TextBlock Name="GrassHopperUIText" Visibility="Hidden" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="Protip: Set use in ProjectNumber panel to avoid getting this popup." VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
         </StackPanel>
         <StackPanel Name="ProjectInputPanel" Visibility="Hidden" Grid.Row="2" Grid.ColumnSpan="2">
             <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="Please confirm the project number" VerticalAlignment="Top" FontWeight="Bold"/>
