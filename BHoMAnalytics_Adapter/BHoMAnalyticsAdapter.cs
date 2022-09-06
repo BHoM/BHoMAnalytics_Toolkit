@@ -125,7 +125,7 @@ namespace BH.Adapter.BHoMAnalytics
 
             if (args.SelectedItem == null || ignoredSelectedItems.Contains(args.SelectedItem.ToString()))
                 return; //Don't handle any pop up when the SetProjectID component is the one being called - it means someone is setting the project ID already!
-
+            //Todo: For Revit, clear all events of ProjectIDEvent when document focus changes?
             var projectIDEvent = BH.Engine.Base.Query.AllEvents().OfType<ProjectIDEvent>().FirstOrDefault();
             if (projectIDEvent == null && !m_ProjectWindowDIsplayed)
             {
