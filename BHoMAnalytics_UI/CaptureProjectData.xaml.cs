@@ -96,6 +96,7 @@ namespace BH.UI.Analytics
         private void Click_NonProjectBtn(object sender, EventArgs e)
         {
             ResetForms();
+            NonProjectBtn.Focus();
             NonProjectSelectionPanel.Visibility = Visibility.Visible;
             this.Height = 380;
             NonProjectListBox.SelectedIndex = 0;
@@ -132,6 +133,11 @@ namespace BH.UI.Analytics
         private void Deactivate_Window(object sender, EventArgs e)
         {
             this.Topmost = true;
+        }
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
         }
         #endregion
 
@@ -187,6 +193,7 @@ namespace BH.UI.Analytics
             //Project
             ProjectInputPanel.Visibility = Visibility.Hidden;
             ProjectIDInput.Text = "";
+            ProjectBtn.Focus();
 
             //Grasshopper specific
             GrassHopperUIText.Visibility = Visibility.Hidden;
