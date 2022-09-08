@@ -39,7 +39,7 @@
             </TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
-            <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="Please indicate the use of this script" VerticalAlignment="Top" FontWeight="Bold"/>
+            <TextBlock Name="BHoMUseTextBlock" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="Please indicate the use of this script" VerticalAlignment="Top" FontWeight="Bold"/>
             <Grid Margin="0,10,0,0">
                 <Button Name="ProjectBtn" Content="Project" HorizontalAlignment="Left" Margin="15,0,0,0" VerticalAlignment="Top" Height="65" Width="150
                         " Click="Click_ProjectBtn" IsDefault="True" />

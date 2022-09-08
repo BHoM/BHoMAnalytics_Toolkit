@@ -50,12 +50,17 @@ namespace BH.UI.Analytics
             VersionTextBlock.Text = $"BHoM Version: {BH.Engine.Base.Query.BHoMVersion()}";
             NonProjectListBox.ItemsSource = Enum.GetValues(typeof(NonProjectOption));
             this._uiName = uiName;
+            
 
             if (_uiName == "Grasshopper")
             {
                 GrassHopperUIText.Visibility = Visibility.Visible;
             }
-            
+            if (_uiName == "Revit")
+            {
+                BHoMUseTextBlock.Text = "Please indicate purpose of this use of BHoM Tools for Revit";
+            }
+
             ProjectBtn.Focus();
             this.ShowDialog();
         }
