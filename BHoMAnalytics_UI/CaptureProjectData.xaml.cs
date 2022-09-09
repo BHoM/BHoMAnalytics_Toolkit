@@ -49,7 +49,7 @@ namespace BH.UI.Analytics
             InitializeComponent();
             VersionTextBlock.Text = $"BHoM Version: {BH.Engine.Base.Query.BHoMVersion()}";
             NonProjectListBox.ItemsSource = Enum.GetValues(typeof(NonProjectOption));
-            this._uiName = uiName;
+            _uiName = uiName;
             
 
             if (_uiName == "Grasshopper")
