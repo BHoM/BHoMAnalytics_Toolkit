@@ -38,5 +38,3 @@ namespace BH.oM.BHoMAnalytics
     }
 }
 
-
-
