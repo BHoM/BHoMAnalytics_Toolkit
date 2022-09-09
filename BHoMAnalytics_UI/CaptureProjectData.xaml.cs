@@ -56,7 +56,7 @@ namespace BH.UI.Analytics
                 UIProtipText.Visibility = Visibility.Visible;
                 UIProtipText.Text = "Protip: Set use in ProjectNumber panel to avoid getting this popup.";
             }
-            if (_uiName == "Revit")
+            else if (_uiName == "Revit")
             {
                 UIProtipText.Visibility = Visibility.Visible;
                 BHoMUseTextBlock.Text = "Please indicate purpose of this use of BHoM Tools for Revit";
