@@ -89,10 +89,12 @@ namespace BH.UI.Analytics
             this.Height = 380;
             ProjectIDInput.Focus();
         }
+
         private void Click_ConfirmProjectBtn(object sender, EventArgs e)
         {
             ConfirmProject();
         }
+        
         private void KeyDown_ProjectIDEntry(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter || e.Key == Key.Return)
