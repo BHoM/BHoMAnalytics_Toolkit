@@ -54,11 +54,19 @@ namespace BH.UI.Analytics
 
             if (_uiName == "Grasshopper")
             {
-                GrassHopperUIText.Visibility = Visibility.Visible;
+                UIProtipText.Visibility = Visibility.Visible;
+                UIProtipText.Text = "Protip: Set use in ProjectNumber panel to avoid getting this popup.";
             }
             if (_uiName == "Revit")
             {
+                UIProtipText.Visibility = Visibility.Visible;
                 BHoMUseTextBlock.Text = "Please indicate purpose of this use of BHoM Tools for Revit";
+                UIProtipText.Text = "Protip: Set Project Number in Revit settings to avoid getting this popup.";
+            }
+            if (_uiName == "Excel")
+            {
+                UIProtipText.Visibility = Visibility.Visible;
+                UIProtipText.Text = "Protip: Set Project Number in Excel Info Title to avoid getting this popup.";
             }
 
             ProjectBtn.Focus();
@@ -67,14 +75,13 @@ namespace BH.UI.Analytics
         #endregion
 
         #region Properties
-        public string Version;
-        public string _uiName;
-
-        public int _initialHeight = 240;
+        private string _uiName;
+        private int _initialHeight = 240;
         #endregion
 
         #region EventActions
-        //Project
+        
+        #region Project
         private void Click_ProjectBtn(object sender, EventArgs e)
         {
             ResetForms();
@@ -91,8 +98,9 @@ namespace BH.UI.Analytics
             if (e.Key == Key.Enter || e.Key == Key.Return)
                 ConfirmProject();
         }
-
-        //Non Project
+        #endregion
+        
+        #region NonProject
         private void Click_NonProjectBtn(object sender, EventArgs e)
         {
             ResetForms();
@@ -129,19 +137,26 @@ namespace BH.UI.Analytics
                 OtherSpecifyText.Visibility = Visibility.Collapsed;
             }
         }
-        //Window
+        #endregion
+
+        #region Window
+        
         private void Deactivate_Window(object sender, EventArgs e)
         {
             this.Topmost = true;
         }
+        
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
         }
         #endregion
+        
+        #endregion
 
         #region PrivateMethods
+        
         private void ConfirmProject()
         {
             string projectID = "";
@@ -158,12 +173,12 @@ namespace BH.UI.Analytics
                 projectID = $"Non-Project Work - {(int)NonProjectListBox.SelectedValue}";
             }
 
-
             if (string.IsNullOrEmpty(projectID))
             {
                 MessageBox.Show("Project ID cannot be empty", "Error", MessageBoxButton.OK);
                 return;
             }
+
             if ((NonProjectSelectionPanel.Visibility == Visibility.Visible && OtherSpecifyInput.Visibility == Visibility.Visible) && string.IsNullOrEmpty(OtherSpecifyInput.Text))
             {
                 MessageBox.Show("Please specify a description for the non-project work", "Error", MessageBoxButton.OK);
@@ -178,7 +193,7 @@ namespace BH.UI.Analytics
 
             this.Close();
         }
-
+        
         private void ResetForms()
         {
             //Non Project
@@ -196,7 +211,7 @@ namespace BH.UI.Analytics
             ProjectBtn.Focus();
 
             //Grasshopper specific
-            GrassHopperUIText.Visibility = Visibility.Hidden;
+            UIProtipText.Visibility = Visibility.Hidden;
 
             //Window
             this.Height = _initialHeight;
