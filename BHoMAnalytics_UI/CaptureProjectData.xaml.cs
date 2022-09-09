@@ -51,7 +51,6 @@ namespace BH.UI.Analytics
             NonProjectListBox.ItemsSource = Enum.GetValues(typeof(NonProjectOption));
             _uiName = uiName;
             
-
             if (_uiName == "Grasshopper")
             {
                 UIProtipText.Visibility = Visibility.Visible;
