@@ -160,6 +160,12 @@ namespace BH.UI.Analytics
         
         private void ConfirmProject()
         {
+            if ((NonProjectSelectionPanel.Visibility == Visibility.Visible && OtherSpecifyInput.Visibility == Visibility.Visible) && string.IsNullOrEmpty(OtherSpecifyInput.Text))
+            {
+                MessageBox.Show("Please specify a description for the non-project work", "Error", MessageBoxButton.OK);
+                return;
+            }
+
             string projectID = "";
             if (ProjectInputPanel.Visibility == Visibility.Visible)
             {
@@ -177,12 +183,6 @@ namespace BH.UI.Analytics
             if (string.IsNullOrEmpty(projectID))
             {
                 MessageBox.Show("Project ID cannot be empty", "Error", MessageBoxButton.OK);
-                return;
-            }
-
-            if ((NonProjectSelectionPanel.Visibility == Visibility.Visible && OtherSpecifyInput.Visibility == Visibility.Visible) && string.IsNullOrEmpty(OtherSpecifyInput.Text))
-            {
-                MessageBox.Show("Please specify a description for the non-project work", "Error", MessageBoxButton.OK);
                 return;
             }
 
@@ -211,7 +211,7 @@ namespace BH.UI.Analytics
             ProjectIDInput.Text = "";
             ProjectBtn.Focus();
 
-            //Grasshopper specific
+            //UI specific
             UIProtipText.Visibility = Visibility.Hidden;
 
             //Window
