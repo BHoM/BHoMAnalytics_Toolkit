@@ -31,10 +31,11 @@ namespace BH.oM.BHoMAnalytics
 {
     public enum NonProjectOption
     {
-        Development = 5,
-        Hackademy = 10,
-        Testing = 15,
-        Other = 20
+        Development = 1,
+        Testing = 2,
+        Training = 3,
+        Hackademy = 4,
+        Other = 5,
     }
 }
 
