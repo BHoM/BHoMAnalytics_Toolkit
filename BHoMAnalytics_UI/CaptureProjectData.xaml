@@ -8,7 +8,7 @@
         Title="Confirm Project Data" Height="240" Width="350"
         ShowInTaskbar="False"
         ResizeMode="NoResize"
-        WindowStartupLocation="CenterOwner"
+        WindowStartupLocation="CenterScreen"
         Topmost="True"
         Deactivated="Deactivate_Window"
         MouseDown="Window_MouseDown"
