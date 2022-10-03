@@ -35,15 +35,36 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Adapter_oM, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\ProgramData\BHoM\Assemblies\Adapter_oM.dll</HintPath>
+    </Reference>
     <Reference Include="BHoM">
       <HintPath>C:\ProgramData\BHoM\Assemblies\BHoM.dll</HintPath>
       <Private>False</Private>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="BHoM_Adapter, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\ProgramData\BHoM\Assemblies\BHoM_Adapter.dll</HintPath>
+    </Reference>
     <Reference Include="BHoM_Engine">
       <HintPath>C:\ProgramData\BHoM\Assemblies\BHoM_Engine.dll</HintPath>
       <Private>False</Private>
       <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Data_oM, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\ProgramData\BHoM\Assemblies\Data_oM.dll</HintPath>
+    </Reference>
+    <Reference Include="SQL_Adapter">
+      <HintPath>..\..\..\..\..\..\..\ProgramData\BHoM\Assemblies\SQL_Adapter.dll</HintPath>
+    </Reference>
+    <Reference Include="SQL_Engine">
+      <HintPath>..\..\..\..\..\..\..\ProgramData\BHoM\Assemblies\SQL_Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="SQL_oM">
+      <HintPath>..\..\..\..\..\..\..\ProgramData\BHoM\Assemblies\SQL_oM.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -79,6 +100,7 @@
     <Compile Include="CaptureProjectData.xaml.cs">
       <DependentUpon>CaptureProjectData.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\FilteredComboBox.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

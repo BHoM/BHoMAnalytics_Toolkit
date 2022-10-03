@@ -22,6 +22,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,6 +37,9 @@ using System.Windows.Shapes;
 using BH.oM.BHoMAnalytics;
 using BH.oM.UI;
 
+using BH.Adapter.SQL;
+using BH.oM.Adapters.SQL;
+
 namespace BH.UI.Analytics
 {
     /// <summary>
@@ -43,10 +47,19 @@ namespace BH.UI.Analytics
     /// </summary>
     public partial class CaptureProjectData : Window
     {
+        #region Properties
+        private string _uiName;
+        private int _initialHeight = 240;
+        private List<string> _loadedProjectData;
+        public ObservableCollection<string> AllProjectData { get; set; }
+        public string SelectedProject { get; set; }
+        #endregion
+
         #region Constructor
         public CaptureProjectData(string uiName)
         {
             InitializeComponent();
+            DataContext = this;
             VersionTextBlock.Text = $"BHoM Version: {BH.Engine.Base.Query.BHoMVersion()}";
             NonProjectListBox.ItemsSource = Enum.GetValues(typeof(NonProjectOption));
             _uiName = uiName;
@@ -68,14 +81,11 @@ namespace BH.UI.Analytics
                 UIProtipText.Text = "Protip: Set Project Number in Excel Info Title to avoid getting this popup.";
             }
 
+            ReadProjectInformation();
+
             ProjectBtn.Focus();
             this.ShowDialog();
         }
-        #endregion
-
-        #region Properties
-        private string _uiName;
-        private int _initialHeight = 240;
         #endregion
 
         #region EventActions
@@ -86,7 +96,8 @@ namespace BH.UI.Analytics
             ResetForms();
             ProjectInputPanel.Visibility = Visibility.Visible;
             this.Height = 380;
-            ProjectIDInput.Focus();
+            //ProjectIDInput.Focus();
+            ProjectComboBox.Focus();
         }
 
         private void Click_ConfirmProjectBtn(object sender, EventArgs e)
@@ -125,7 +136,7 @@ namespace BH.UI.Analytics
 
         private void NonProjectListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (NonProjectListBox.SelectedValue.Equals(NonProjectOption.Other))
+            if (NonProjectListBox.SelectedValue != null && NonProjectListBox.SelectedValue.Equals(NonProjectOption.Other))
             {
                 this.Height = 445;
                 OtherSpecifyInput.Visibility = Visibility.Visible;
@@ -169,7 +180,14 @@ namespace BH.UI.Analytics
             string projectID = "";
             if (ProjectInputPanel.Visibility == Visibility.Visible)
             {
-                projectID = ProjectIDInput.Text;
+                projectID = SelectedProject;// ProjectIDInput.Text;
+
+                if(!_loadedProjectData.Contains(projectID))
+                {
+                    var answer = MessageBox.Show($"{projectID} is not currently set up as a project in the database. Are you sure you wish to continue with this?", "Confirm", MessageBoxButton.YesNo);
+                    if (answer == MessageBoxResult.No)
+                        return;
+                }
             }
             else if (NonProjectSelectionPanel.Visibility == Visibility.Visible && OtherSpecifyInput.Visibility == Visibility.Visible)
             {
@@ -208,7 +226,8 @@ namespace BH.UI.Analytics
 
             //Project
             ProjectInputPanel.Visibility = Visibility.Hidden;
-            ProjectIDInput.Text = "";
+            ProjectComboBox.Text = "";
+            ProjectComboBox.SelectedIndex = -1;
             ProjectBtn.Focus();
 
             //UI specific
@@ -216,6 +235,40 @@ namespace BH.UI.Analytics
 
             //Window
             this.Height = _initialHeight;
+        }
+
+        private void ReadProjectInformation()
+        {
+            _loadedProjectData = new List<string>();
+            AllProjectData = new ObservableCollection<string>();
+
+            try
+            {
+                var sqlAdapter = new SqlAdapter("SQL-BHoM01", "BuroHappoldData");
+                TableRequest request = new TableRequest() { Table = "Project" };
+                var obj = sqlAdapter.Pull(request).Cast<BH.oM.Base.CustomObject>().ToList();
+
+                obj = obj.OrderBy(x => x.CustomData["Status"].ToString()).ThenBy(x => x.CustomData["ProjectId"].ToString()).ToList();
+
+                foreach (var item in obj)
+                {
+                    string projectInfo = $"{item.CustomData["ProjectId"].ToString()} - {item.Name}";
+
+                    var projectStatus = item.CustomData["Status"].ToString().ToLower().Trim();
+                    if (projectStatus == "dormant")
+                        projectInfo += " - DORMANT";
+                    else if (projectStatus == "inactive")
+                        projectInfo += " - INACTIVE";
+
+                    AllProjectData.Add(projectInfo);
+                }
+
+                _loadedProjectData = AllProjectData.ToList();
+            }
+            catch(Exception e)
+            {
+                BH.Engine.Base.Compute.RecordWarning("Could not connect to project database for project analytics information. Error: " + e.ToString());
+            }
         }
         #endregion
     }
