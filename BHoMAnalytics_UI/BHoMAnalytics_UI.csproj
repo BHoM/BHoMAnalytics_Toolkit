@@ -100,7 +100,7 @@
     <Compile Include="CaptureProjectData.xaml.cs">
       <DependentUpon>CaptureProjectData.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\FilteredComboBox.cs" />
+    <Compile Include="CustomControls\FilterableComboBox.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
