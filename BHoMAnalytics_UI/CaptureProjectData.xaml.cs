@@ -180,13 +180,23 @@ namespace BH.UI.Analytics
             string projectID = "";
             if (ProjectInputPanel.Visibility == Visibility.Visible)
             {
-                projectID = SelectedProject;// ProjectIDInput.Text;
+                projectID = SelectedProject;
+                projectID = projectID.Split('-').First().Trim();
 
-                if(!_loadedProjectData.Contains(projectID))
+                if(!_loadedProjectData.Contains(SelectedProject))
                 {
                     var answer = MessageBox.Show($"{projectID} is not currently set up as a project in the database. Are you sure you wish to continue with this?", "Confirm", MessageBoxButton.YesNo);
                     if (answer == MessageBoxResult.No)
                         return;
+                }
+                else
+                {
+                    if(SelectedProject.ToLower().Contains("inactive") || SelectedProject.ToLower().Contains("dormant"))
+                    {
+                        var answer = MessageBox.Show($"{projectID} is listed as inactive or dormant. Are you sure you wish to continue with this?", "Confirm", MessageBoxButton.YesNo);
+                        if (answer == MessageBoxResult.No)
+                            return;
+                    }
                 }
             }
             else if (NonProjectSelectionPanel.Visibility == Visibility.Visible && OtherSpecifyInput.Visibility == Visibility.Visible)
