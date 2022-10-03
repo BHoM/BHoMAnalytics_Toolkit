@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace BH.UI.Analytics.CustomControls
 {
-    public class FilteredComboBox : ComboBox
+    public class FilterableComboBox : ComboBox
     {
         #region Properties
         private string _oldFilter = string.Empty;
@@ -20,7 +20,7 @@ namespace BH.UI.Analytics.CustomControls
         #endregion
 
         #region Ctor
-        public FilteredComboBox()
+        public FilterableComboBox()
         {
 
         }

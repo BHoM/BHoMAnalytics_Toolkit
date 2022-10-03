@@ -56,7 +56,7 @@
         
         <StackPanel Name="ProjectInputPanel" Visibility="Hidden" Grid.Row="2" Grid.ColumnSpan="2">
             <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="Please confirm the project number" VerticalAlignment="Top" FontWeight="Bold"/>
-            <customControls:FilteredComboBox x:Name="ProjectComboBox"
+            <customControls:FilterableComboBox x:Name="ProjectComboBox"
                                     ItemsSource="{Binding AllProjectData}"
                                     SelectedItem="{Binding SelectedProject}"
                                     IsEditable="True" 
@@ -67,12 +67,12 @@
                                              Width="200"
                                              Margin="0,10,0,0">
 
-                <customControls:FilteredComboBox.ItemsPanel>
+                <customControls:FilterableComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel VirtualizationMode="Standard" />
                     </ItemsPanelTemplate>
-                </customControls:FilteredComboBox.ItemsPanel>
-            </customControls:FilteredComboBox>
+                </customControls:FilterableComboBox.ItemsPanel>
+            </customControls:FilterableComboBox>
             <Button Name="ConfirmProjectBtn" Content="Confirm" HorizontalAlignment="Center" Margin="0,10,0,0" Height="65" Width="150" Click="Click_ConfirmProjectBtn" />
         </StackPanel>
         
