@@ -3,3 +3,4 @@ BHoM/BHoM_Engine
 BHoM/BHoM_Adapter
 BHoM/Mongo_Toolkit
 BHoM/BHoM_UI
+BHoM/SQL_Toolkit
