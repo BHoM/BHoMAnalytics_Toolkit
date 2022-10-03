@@ -96,7 +96,6 @@ namespace BH.UI.Analytics
             ResetForms();
             ProjectInputPanel.Visibility = Visibility.Visible;
             this.Height = 380;
-            //ProjectIDInput.Focus();
             ProjectComboBox.Focus();
         }
 
@@ -257,10 +256,11 @@ namespace BH.UI.Analytics
                 var sqlAdapter = new SqlAdapter("SQL-BHoM01", "BuroHappoldData");
                 TableRequest request = new TableRequest() { Table = "Project" };
                 var obj = sqlAdapter.Pull(request).Cast<BH.oM.Base.CustomObject>().ToList();
+                obj = obj.Where(x => x.CustomData["Status"].ToString().ToLower() == "active").ToList();
 
                 obj = obj.OrderBy(x => x.CustomData["Status"].ToString()).ThenBy(x => x.CustomData["ProjectId"].ToString()).ToList();
 
-                foreach (var item in obj)
+                Parallel.ForEach(obj, item =>
                 {
                     string projectInfo = $"{item.CustomData["ProjectId"].ToString()} - {item.Name}";
 
@@ -271,7 +271,7 @@ namespace BH.UI.Analytics
                         projectInfo += " - INACTIVE";
 
                     AllProjectData.Add(projectInfo);
-                }
+                });
 
                 _loadedProjectData = AllProjectData.ToList();
             }
