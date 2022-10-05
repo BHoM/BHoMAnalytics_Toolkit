@@ -100,10 +100,6 @@
       <Project>{6787686e-fcb0-45e1-bb7d-d2a37ddc4f79}</Project>
       <Name>BHoMAnalytics_oM</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BHoMAnalytics_UI\BHoMAnalytics_UI.csproj">
-      <Project>{a87855bd-8c08-4c0f-953e-8a795cc9eabb}</Project>
-      <Name>BHoMAnalytics_UI</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

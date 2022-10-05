@@ -52,15 +52,6 @@ namespace BH.Adapter.BHoMAnalytics
 
         public static bool InitialiseAnalytics()
         {
-            try
-            {
-                BH.Engine.UI.Compute.m_UsageLogTriggered += UsageLogTriggered;
-            }
-            catch (Exception e)
-            {
-                BH.Engine.Base.Compute.RecordError($"Error occurred when initialising analytics trigger. Exception was: {e.ToString()}");
-            }
-
             return SendUsageData();
         }
 
@@ -110,41 +101,6 @@ namespace BH.Adapter.BHoMAnalytics
         }
 
         /***************************************************/
-
-        private static void UsageLogTriggered(object sender, EventArgs e)
-        {
-            var args = e as TriggerLogUsageArgs;
-            if (args == null)
-                return;
-
-            List<string> ignoredSelectedItems = new List<string>()
-            {
-                "BH.oM.Base.Output`10[System.String,System.String,System.String,System.Collections.Generic.List`1[System.String],System.Collections.Generic.List`1[System.Type],System.Collections.Generic.List`1[System.Reflection.MethodInfo],System.Collections.Generic.List`1[System.Type],System.String,System.String,System.String] GetInfo()",
-                "Boolean SetProjectID(System.String)",
-            };
-
-            if (args.SelectedItem == null || ignoredSelectedItems.Contains(args.SelectedItem.ToString()))
-                return; //Don't handle any pop up when the SetProjectID component is the one being called - it means someone is setting the project ID already!
-            
-            var projectIDEvent = BH.Engine.Base.Query.AllEvents().OfType<ProjectIDEvent>().FirstOrDefault();
-            if (projectIDEvent == null && !m_ProjectWindowDIsplayed)
-            {
-                Thread t = new Thread(() => ShowProjectCaptureWindow(args.UIName));
-                t.SetApartmentState(ApartmentState.STA);
-                t.Start();
-                
-                m_ProjectWindowDIsplayed = true;
-            }
-        }
-
-        /***************************************************/
-
-        private static void ShowProjectCaptureWindow(string uiName)
-        {
-            BH.UI.Analytics.CaptureProjectData window = new UI.Analytics.CaptureProjectData(uiName);
-        }
-
-        private static bool m_ProjectWindowDIsplayed = false;
     }
 }
 
