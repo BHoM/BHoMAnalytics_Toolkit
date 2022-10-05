@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BHoMAnalytics_oM", "BHoMAna
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BHoMAnalytics_Adapter", "BHoMAnalytics_Adapter\BHoMAnalytics_Adapter.csproj", "{0F0F20B4-80C6-4376-92C9-5412685DDEF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BHoMAnalytics_UI", "BHoMAnalytics_UI\BHoMAnalytics_UI.csproj", "{A87855BD-8C08-4C0F-953E-8A795CC9EABB}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{0F0F20B4-80C6-4376-92C9-5412685DDEF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F0F20B4-80C6-4376-92C9-5412685DDEF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F0F20B4-80C6-4376-92C9-5412685DDEF7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A87855BD-8C08-4C0F-953E-8A795CC9EABB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A87855BD-8C08-4C0F-953E-8A795CC9EABB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A87855BD-8C08-4C0F-953E-8A795CC9EABB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A87855BD-8C08-4C0F-953E-8A795CC9EABB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
