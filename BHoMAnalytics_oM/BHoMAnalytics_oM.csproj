@@ -51,7 +51,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enums\NonProjectOption.cs" />
     <Compile Include="Enums\ItemType.cs" />
     <Compile Include="ToolkitSettings.cs" />
     <Compile Include="WebUsageEntry.cs" />
