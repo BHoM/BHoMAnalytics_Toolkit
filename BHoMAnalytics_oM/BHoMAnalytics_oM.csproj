@@ -2,16 +2,23 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>https://github.com/BHoM/BHoMAnalytics_Toolkit</Description>
+    <FileVersion>6.1.0.0</FileVersion>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>
     <RootNamespace>BH.oM.BHoMAnalytics</RootNamespace>
     <BaseOutputPath>..\Build\</BaseOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
     <Reference Include="BHoM">
-      <HintPath>..\..\..\..\..\..\..\ProgramData\BHoM\Assemblies\BHoM.dll</HintPath>
+      <HintPath>C:\ProgramData\BHoM\Assemblies\BHoM.dll</HintPath>
+      <Private>False</Private>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="UI_oM">
-      <HintPath>..\..\..\..\..\..\..\ProgramData\BHoM\Assemblies\UI_oM.dll</HintPath>
+      <HintPath>C:\ProgramData\BHoM\Assemblies\UI_oM.dll</HintPath>
+      <Private>False</Private>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
   </ItemGroup>
 
