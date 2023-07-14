@@ -12,7 +12,7 @@
     <description>Interoperability with Analytics using the BHoM format provided by the BHoMAnalytics_Toolkit of the Building and Habitats object Model (BHoM) - more information available at https://github.com/BHoM/BHoMAnalytics_Toolkit</description>
     <releaseNotes></releaseNotes>
     <copyright></copyright>
-    <tags>BHoM adapter aec</tags>
+    <tags>BHoM Analytics aec interop</tags>
     <title></title>
     <dependencies>
       <group targetFramework="netstandard2.0">
