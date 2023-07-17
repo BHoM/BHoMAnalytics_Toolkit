@@ -6,7 +6,7 @@
     <FileVersion>6.3.0.0</FileVersion>
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
     <RootNamespace>BH.oM.BHoMAnalytics</RootNamespace>
-    <BaseOutputPath>..\Build\</BaseOutputPath>
+    <OutputPath>..\Build\</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
