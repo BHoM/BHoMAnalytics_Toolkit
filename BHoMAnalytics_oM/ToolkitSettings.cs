@@ -22,7 +22,6 @@
 
 using BH.oM.Base;
 using BH.oM.Base.Debugging;
-using BH.oM.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
