@@ -22,7 +22,6 @@
 
 using BH.oM.BHoMAnalytics;
 using BH.oM.Base.Attributes;
-using BH.oM.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

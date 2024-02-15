@@ -30,7 +30,6 @@ using BH.Adapter.Mongo;
 using BH.oM.BHoMAnalytics;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using BH.oM.UI;
 
 namespace BH.Adapter.BHoMAnalytics
 {

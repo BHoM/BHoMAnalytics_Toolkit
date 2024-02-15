@@ -50,16 +50,6 @@
       <Private>False</Private>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="UI_Engine">
-      <HintPath>$(ProgramData)\BHoM\Assemblies\UI_Engine.dll</HintPath>
-      <Private>False</Private>
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="UI_oM">
-      <HintPath>$(ProgramData)\BHoM\Assemblies\UI_oM.dll</HintPath>
-      <Private>False</Private>
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
