@@ -44,7 +44,7 @@ namespace BH.Engine.BHoMAnalytics
         [Input("collectionName", "Name of the collection inside that database that will contain the analytics data.")]
         public static ToolkitSettings ToolkitSettings(string serverAddress, string databaseName, string collectionName)
         {
-            return new ToolkitSettings(serverAddress, databaseName, collectionName);
+            return new ToolkitSettings(serverAddress, databaseName, collectionName, "BH.Engine.BHoMAnalytics.Create.ToolkitSettings(System.String, System.String, System.String)");
         }
 
         /***************************************************/

@@ -56,11 +56,12 @@ namespace BH.oM.BHoMAnalytics
         /**** Constructors                              ****/
         /***************************************************/
 
-        public ToolkitSettings(string serverAddress, string databaseName, string collectionName)
+        public ToolkitSettings(string serverAddress, string databaseName, string collectionName, string initialisationMethod)
         {
             ServerAddress = serverAddress;
             DatabaseName = databaseName;
             CollectionName = collectionName;
+            InitialisationMethod = initialisationMethod;
         }
 
         /***************************************************/
