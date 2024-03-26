@@ -33,7 +33,7 @@ using System.Threading.Tasks;
 namespace BH.oM.BHoMAnalytics
 {
     [Description("Settings for the BHoMAnalytics toolkit. This contains the reference to the database where to save the analytics data as well as the method in charge to do so.")]
-    public class ToolkitSettings : BHoMObject, ISettings, IInitialisationSettings
+    public class ToolkitSettings : BHoMObject, ISettings, IInitialisationSettings, IImmutable
     {
         /***************************************************/
         /**** Properties                                ****/
@@ -56,11 +56,12 @@ namespace BH.oM.BHoMAnalytics
         /**** Constructors                              ****/
         /***************************************************/
 
-        public ToolkitSettings(string serverAddress, string databaseName, string collectionName)
+        public ToolkitSettings(string serverAddress, string databaseName, string collectionName, string initialisationMethod)
         {
             ServerAddress = serverAddress;
             DatabaseName = databaseName;
             CollectionName = collectionName;
+            InitialisationMethod = initialisationMethod;
         }
 
         /***************************************************/
