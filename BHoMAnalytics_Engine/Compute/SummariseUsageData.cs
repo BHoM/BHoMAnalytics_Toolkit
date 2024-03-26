@@ -28,6 +28,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BH.oM.Base.Attributes;
 
 namespace BH.Engine.BHoMAnalytics
 {
@@ -37,6 +38,8 @@ namespace BH.Engine.BHoMAnalytics
         /**** Public Methods                            ****/
         /***************************************************/
 
+        [Input("logEntries", "The list of logged usage entries to summarise.")]
+        [Output("usageEntries", "A list of summarised usage entries.")]
         public static List<UsageEntry> SummariseUsageData(this List<UsageLogEntry> logEntries)
         {
             string computer = Environment.MachineName;
