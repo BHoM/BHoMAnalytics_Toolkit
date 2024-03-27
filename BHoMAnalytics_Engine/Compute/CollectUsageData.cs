@@ -1,6 +1,6 @@
 /*
  * This file is part of the Buildings and Habitats object Model (BHoM)
- * Copyright (c) 2015 - 2023, the respective contributors. All rights reserved.
+ * Copyright (c) 2015 - 2024, the respective contributors. All rights reserved.
  *
  * Each contributor holds copyright over their respective contributions.
  * The project versioning (Git) records all such contribution source information.
@@ -21,13 +21,14 @@
  */
 
 using BH.oM.BHoMAnalytics;
-using BH.oM.UI;
+using BH.oM.Base;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BH.oM.Base.Attributes;
 
 namespace BH.Engine.BHoMAnalytics
 {
@@ -37,6 +38,8 @@ namespace BH.Engine.BHoMAnalytics
         /**** Public Methods                            ****/
         /***************************************************/
 
+        [Input("deleteProcessedFiles", "Whether the method should delete processed log files or not.")]
+        [Output("entries", "The list of processed usage entries.")]
         public static List<UsageEntry> CollectUsageData(bool deleteProcessedFiles = false)
         {
             string logFolder = @"C:\ProgramData\BHoM\Logs";
@@ -99,6 +102,7 @@ namespace BH.Engine.BHoMAnalytics
         /***************************************************/
     }
 }
+
 
 
 

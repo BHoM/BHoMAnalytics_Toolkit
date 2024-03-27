@@ -1,6 +1,6 @@
 /*
  * This file is part of the Buildings and Habitats object Model (BHoM)
- * Copyright (c) 2015 - 2023, the respective contributors. All rights reserved.
+ * Copyright (c) 2015 - 2024, the respective contributors. All rights reserved.
  *
  * Each contributor holds copyright over their respective contributions.
  * The project versioning (Git) records all such contribution source information.
@@ -22,7 +22,6 @@
 
 using BH.oM.BHoMAnalytics;
 using BH.oM.Base.Attributes;
-using BH.oM.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,14 +42,16 @@ namespace BH.Engine.BHoMAnalytics
         [Input("serverAddress", "Connection string of the Mongo server in charge of storing teh analytics data. Be aware that this generally includes the port number.")]
         [Input("databaseName", "Name of the database on the Mongo server that will contain the analytics data.")]
         [Input("collectionName", "Name of the collection inside that database that will contain the analytics data.")]
-        public static ToolkitSettings ToolkitSettings(string serverAddress, string databaseName, string collectionName)
+        [Input("initialisationMethod", "Method signature of the method creating this ToolkitSettings.")]
+        public static ToolkitSettings ToolkitSettings(string serverAddress, string databaseName, string collectionName, string initialisationMethod)
         {
-            return new ToolkitSettings(serverAddress, databaseName, collectionName);
+            return new ToolkitSettings(serverAddress, databaseName, collectionName, initialisationMethod);
         }
 
         /***************************************************/
     }
 }
+
 
 
 

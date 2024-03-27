@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Description>https://github.com/BHoM/BHoMAnalytics_Toolkit</Description>
-    <FileVersion>7.0.0.0</FileVersion>
+    <FileVersion>7.1.0.0</FileVersion>
     <AssemblyVersion>7.0.0.0</AssemblyVersion>
     <BaseOutputPath>..\Build\</BaseOutputPath>
     <RootNamespace>BH.Engine.BHoMAnalytics</RootNamespace>
@@ -32,11 +32,6 @@
     </Reference>
     <Reference Include="Serialiser_Engine">
       <HintPath>$(ProgramData)\BHoM\Assemblies\Serialiser_Engine.dll</HintPath>
-      <Private>False</Private>
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="UI_oM">
-      <HintPath>$(ProgramData)\BHoM\Assemblies\UI_oM.dll</HintPath>
       <Private>False</Private>
       <SpecificVersion>False</SpecificVersion>
     </Reference>

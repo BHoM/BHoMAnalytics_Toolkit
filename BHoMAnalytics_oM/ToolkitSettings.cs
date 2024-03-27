@@ -1,6 +1,6 @@
 /*
  * This file is part of the Buildings and Habitats object Model (BHoM)
- * Copyright (c) 2015 - 2023, the respective contributors. All rights reserved.
+ * Copyright (c) 2015 - 2024, the respective contributors. All rights reserved.
  *
  * Each contributor holds copyright over their respective contributions.
  * The project versioning (Git) records all such contribution source information.
@@ -22,7 +22,6 @@
 
 using BH.oM.Base;
 using BH.oM.Base.Debugging;
-using BH.oM.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -34,7 +33,7 @@ using System.Threading.Tasks;
 namespace BH.oM.BHoMAnalytics
 {
     [Description("Settings for the BHoMAnalytics toolkit. This contains the reference to the database where to save the analytics data as well as the method in charge to do so.")]
-    public class ToolkitSettings : BHoMObject, ISettings, IInitialisationSettings
+    public class ToolkitSettings : BHoMObject, ISettings, IInitialisationSettings, IImmutable
     {
         /***************************************************/
         /**** Properties                                ****/
@@ -57,16 +56,18 @@ namespace BH.oM.BHoMAnalytics
         /**** Constructors                              ****/
         /***************************************************/
 
-        public ToolkitSettings(string serverAddress, string databaseName, string collectionName)
+        public ToolkitSettings(string serverAddress, string databaseName, string collectionName, string initialisationMethod)
         {
             ServerAddress = serverAddress;
             DatabaseName = databaseName;
             CollectionName = collectionName;
+            InitialisationMethod = initialisationMethod;
         }
 
         /***************************************************/
     }
 }
+
 
 
 
