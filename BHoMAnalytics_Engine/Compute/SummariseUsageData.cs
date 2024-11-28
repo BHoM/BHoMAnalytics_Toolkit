@@ -42,8 +42,6 @@ namespace BH.Engine.BHoMAnalytics
         [Output("usageEntries", "A list of summarised usage entries.")]
         public static List<UsageEntry> SummariseUsageData(this List<UsageLogEntry> logEntries)
         {
-            string computer = Environment.MachineName;
-
             List<UsageEntry> dbEntries = new List<UsageEntry>();
 
             foreach (var fileGroup in logEntries.GroupBy(x => x.FileId))
@@ -64,7 +62,8 @@ namespace BH.Engine.BHoMAnalytics
                         UiVersion = firstEntry.UiVersion,
                         CallerName = firstEntry.CallerName,
                         SelectedItem = firstEntry.SelectedItem,
-                        Computer = computer,
+                        Computer = Environment.MachineName,
+                        Username = Environment.UserName,
                         BHoMVersion = firstEntry.BHoMVersion,
                         FileId = fileId,
                         FileName = fileName,
