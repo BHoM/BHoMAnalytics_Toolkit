@@ -50,6 +50,8 @@ namespace BH.oM.BHoMAnalytics
 
         public virtual string Computer { get; set; } = "";
 
+        public virtual string Username { get; set; } = "";
+
         public virtual string BHoMVersion { get; set; } = "";
 
         public virtual string FileId { get; set; } = "";
