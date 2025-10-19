@@ -51,17 +51,21 @@ namespace BH.oM.BHoMAnalytics
         [Description("Method ran when the UI is loaded. This is in charge of sending teh analytics files generated so far to the database.")]
         public virtual string InitialisationMethod { get; } = "BH.Adapter.BHoMAnalytics.BHoMAnalyticsAdapter.InitialiseAnalytics";
 
+        [Description("Assmbly where the initialisation method can be found.")]
+        public virtual string InitialisationAssembly { get; } = "BHoMAnalytics_Adapter";
+
 
         /***************************************************/
         /**** Constructors                              ****/
         /***************************************************/
 
-        public ToolkitSettings(string serverAddress, string databaseName, string collectionName, string initialisationMethod)
+        public ToolkitSettings(string serverAddress, string databaseName, string collectionName, string initialisationMethod, string initialisationAssembly)
         {
             ServerAddress = serverAddress;
             DatabaseName = databaseName;
             CollectionName = collectionName;
             InitialisationMethod = initialisationMethod;
+            InitialisationAssembly = initialisationAssembly;
         }
 
         /***************************************************/

@@ -43,9 +43,11 @@ namespace BH.Engine.BHoMAnalytics
         [Input("databaseName", "Name of the database on the Mongo server that will contain the analytics data.")]
         [Input("collectionName", "Name of the collection inside that database that will contain the analytics data.")]
         [Input("initialisationMethod", "Method signature of the method creating this ToolkitSettings.")]
-        public static ToolkitSettings ToolkitSettings(string serverAddress, string databaseName, string collectionName, string initialisationMethod)
+        [Input("initialisationAssembly", "Assmbly where the initialisation method can be found.")]
+        [Output("Created toolkit settings.")]
+        public static ToolkitSettings ToolkitSettings(string serverAddress, string databaseName, string collectionName, string initialisationMethod, string initialisationAssembly)
         {
-            return new ToolkitSettings(serverAddress, databaseName, collectionName, initialisationMethod);
+            return new ToolkitSettings(serverAddress, databaseName, collectionName, initialisationMethod, initialisationAssembly);
         }
 
         /***************************************************/
