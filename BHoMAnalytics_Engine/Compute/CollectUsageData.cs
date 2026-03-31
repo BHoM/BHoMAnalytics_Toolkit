@@ -38,6 +38,8 @@ namespace BH.Engine.BHoMAnalytics
         /**** Public Methods                            ****/
         /***************************************************/
 
+        [Description("Collects BHoM usage data from log files in C:\\ProgramData\\BHoM\\Logs, deserialises each entry, \n" +
+            "and returns a summarised list of usage entries.")]
         [Input("deleteProcessedFiles", "Whether the method should delete processed log files or not.")]
         [Output("entries", "The list of processed usage entries.")]
         public static List<UsageEntry> CollectUsageData(bool deleteProcessedFiles = false)
