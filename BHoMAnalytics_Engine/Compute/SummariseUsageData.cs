@@ -29,6 +29,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Base.Attributes;
+using System.ComponentModel;
 
 namespace BH.Engine.BHoMAnalytics
 {
