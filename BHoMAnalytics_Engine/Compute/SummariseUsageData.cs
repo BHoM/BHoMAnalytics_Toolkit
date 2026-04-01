@@ -29,6 +29,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Base.Attributes;
+using System.ComponentModel;
 
 namespace BH.Engine.BHoMAnalytics
 {
@@ -38,6 +39,8 @@ namespace BH.Engine.BHoMAnalytics
         /**** Public Methods                            ****/
         /***************************************************/
 
+        [Description("Summarises a list of raw usage log entries by grouping them by file and caller, \n" +
+            "consolidating repeated calls into aggregated UsageEntry objects.")]
         [Input("logEntries", "The list of logged usage entries to summarise.")]
         [Output("usageEntries", "A list of summarised usage entries.")]
         public static List<UsageEntry> SummariseUsageData(this List<UsageLogEntry> logEntries)
