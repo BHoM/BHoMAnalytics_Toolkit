@@ -1,6 +1,6 @@
 /*
  * This file is part of the Buildings and Habitats object Model (BHoM)
- * Copyright (c) 2015 - 2025, the respective contributors. All rights reserved.
+ * Copyright (c) 2015 - 2026, the respective contributors. All rights reserved.
  *
  * Each contributor holds copyright over their respective contributions.
  * The project versioning (Git) records all such contribution source information.
@@ -29,6 +29,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Base.Attributes;
+using System.ComponentModel;
 
 namespace BH.Engine.BHoMAnalytics
 {
@@ -38,6 +39,8 @@ namespace BH.Engine.BHoMAnalytics
         /**** Public Methods                            ****/
         /***************************************************/
 
+        [Description("Collects BHoM usage data from log files in C:\\ProgramData\\BHoM\\Logs, deserialises each entry, \n" +
+            "and returns a summarised list of usage entries.")]
         [Input("deleteProcessedFiles", "Whether the method should delete processed log files or not.")]
         [Output("entries", "The list of processed usage entries.")]
         public static List<UsageEntry> CollectUsageData(bool deleteProcessedFiles = false)
@@ -102,6 +105,7 @@ namespace BH.Engine.BHoMAnalytics
         /***************************************************/
     }
 }
+
 
 
 

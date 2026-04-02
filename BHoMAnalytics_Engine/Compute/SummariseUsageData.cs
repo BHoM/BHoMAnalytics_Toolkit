@@ -1,6 +1,6 @@
 /*
  * This file is part of the Buildings and Habitats object Model (BHoM)
- * Copyright (c) 2015 - 2025, the respective contributors. All rights reserved.
+ * Copyright (c) 2015 - 2026, the respective contributors. All rights reserved.
  *
  * Each contributor holds copyright over their respective contributions.
  * The project versioning (Git) records all such contribution source information.
@@ -29,6 +29,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Base.Attributes;
+using System.ComponentModel;
 
 namespace BH.Engine.BHoMAnalytics
 {
@@ -38,6 +39,8 @@ namespace BH.Engine.BHoMAnalytics
         /**** Public Methods                            ****/
         /***************************************************/
 
+        [Description("Summarises a list of raw usage log entries by grouping them by file and caller, \n" +
+            "consolidating repeated calls into aggregated UsageEntry objects.")]
         [Input("logEntries", "The list of logged usage entries to summarise.")]
         [Output("usageEntries", "A list of summarised usage entries.")]
         public static List<UsageEntry> SummariseUsageData(this List<UsageLogEntry> logEntries)
@@ -81,6 +84,7 @@ namespace BH.Engine.BHoMAnalytics
         /***************************************************/
     }
 }
+
 
 
 
