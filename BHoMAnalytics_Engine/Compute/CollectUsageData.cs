@@ -30,6 +30,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Base.Attributes;
 using System.ComponentModel;
+using MongoDB.Bson;
 
 namespace BH.Engine.BHoMAnalytics
 {
@@ -76,7 +77,28 @@ namespace BH.Engine.BHoMAnalytics
                 // Extract the usage entries and summarise them
                 try
                 {
-                    List<UsageLogEntry> logEntries = json.Select(x => Engine.Serialiser.Convert.FromJson(x)).OfType<UsageLogEntry>().ToList();
+                    List<UsageLogEntry> logEntries = new List<UsageLogEntry>();
+                    foreach (string j in json)
+                    {
+                        object entry = Engine.Serialiser.Convert.FromJson(j);
+                        if (entry is UsageLogEntry usageLogEntry)
+                        {
+                            // SelectedItem fails to deserialise if it refers to a type from an assembly that is not loaded
+                            // In such case, the raw json of the item is preserved instead as a fallback
+                            if (usageLogEntry.SelectedItem == null)
+                            {
+                                try
+                                {
+                                    if (BsonDocument.Parse(j).TryGetValue(nameof(UsageLogEntry.SelectedItem), out BsonValue selectedItem) && selectedItem.IsBsonDocument)
+                                        usageLogEntry.SelectedItem = selectedItem.ToJson();
+                                }
+                                catch { }
+                            }
+
+                            logEntries.Add(usageLogEntry);
+                        }
+                    }
+
                     List<UsageEntry> summary = logEntries.SummariseUsageData();
                     usageEntries.AddRange(summary);
                 }

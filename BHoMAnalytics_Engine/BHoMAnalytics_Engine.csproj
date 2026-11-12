@@ -13,6 +13,10 @@
   <ItemGroup>
     <ProjectReference Include="..\BHoMAnalytics_oM\BHoMAnalytics_oM.csproj" />
   </ItemGroup>
+	
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Bson" Version="2.19.0" />
+  </ItemGroup>
 
   <ItemGroup>
     <Reference Include="BHoM">

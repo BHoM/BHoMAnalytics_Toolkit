@@ -28,6 +28,8 @@ using System.Threading;
 using System.IO;
 using BH.Adapter.Mongo;
 using BH.oM.BHoMAnalytics;
+using MongoDB.Bson;
+using MongoDB.Bson.IO;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -65,7 +67,7 @@ namespace BH.Adapter.BHoMAnalytics
                 {
                     List<UsageEntry> usageData = Engine.BHoMAnalytics.Compute.CollectUsageData(true);
                     string tag = System.DateTime.UtcNow.Ticks.ToString();
-                    mongo.Push(usageData, tag);
+                    mongo.Push(usageData.Select(x => ToMongoEntry(x)).ToList(), tag);
                 }
             });
 
@@ -76,6 +78,23 @@ namespace BH.Adapter.BHoMAnalytics
 
         /***************************************************/
         /**** Helper Methods                            ****/
+        /***************************************************/
+
+        // If SelectedItem could not be deserialised, CollectUsageData stores its raw json as a string instead.
+        // In such case, the entry is serialised here with the raw json embedded as a document, so that it lands in the database
+        // exactly like a successfully deserialised item would. Mongo adapter parses json strings directly into documents.
+        private static object ToMongoEntry(UsageEntry entry)
+        {
+            if (entry.SelectedItem is string raw && raw.TrimStart().StartsWith("{") && BsonDocument.TryParse(raw, out BsonDocument selectedItem))
+            {
+                BsonDocument document = Engine.Serialiser.Convert.ToBson(entry);
+                document[nameof(UsageEntry.SelectedItem)] = selectedItem;
+                return document.ToJson(new JsonWriterSettings { OutputMode = JsonOutputMode.CanonicalExtendedJson });
+            }
+
+            return entry;
+        }
+
         /***************************************************/
 
         private static MongoAdapter GetTargetDatabase()
